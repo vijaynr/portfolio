@@ -99,19 +99,34 @@ function renderProjects() {
       const projectCard = document.createElement('div');
       projectCard.className = 'pixel-card project-item';
       
+      const tags = project.tags || project.category;
+      const displayTags = Array.isArray(tags) ? tags.join(' • ') : (tags || '');
+      const summary = project.shortDescription || project.description;
+      const techStack = project.techStack && project.techStack.length
+        ? `<div class="project-tech-stack">${project.techStack.join(', ')}</div>`
+        : '';
+      const projectLink = project.link
+        ? `<a href="${project.link}" class="pixel-button sm" target="_blank" rel="noopener">VIEW PROJECT</a>`
+        : '';
+      const tagsMarkup = displayTags
+        ? `<span class="project-tags">${displayTags}</span>`
+        : '';
+      const footerMarkup = tagsMarkup || projectLink
+        ? `<div class="project-footer">
+            ${tagsMarkup}
+            ${projectLink}
+          </div>`
+        : '';
+
       projectCard.innerHTML = `
-        <div class="project-header">
+        <div class="project-summary">
           <h3 class="project-title">${project.title}</h3>
-          <span class="project-category">${project.category ? project.category.join(', ') : ''}</span>
-        </div>
         </div>
         <div class="project-details-wrapper">
-          <p class="project-description">${project.description}</p>
-          <div class="project-tech-stack">
-            <span class="tech">${project.techStack ? project.techStack.join(', ') : ''}</span>
-          </div>
-          <a href="${project.link}" class="pixel-button sm">VIEW PROJECT</a>
+          <p class="project-description">${summary}</p>
+          ${techStack}
         </div>
+        ${footerMarkup}
       `;
       
       projectsGrid.appendChild(projectCard);
