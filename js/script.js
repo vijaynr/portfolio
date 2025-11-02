@@ -29,47 +29,61 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Theme Management
 function initTheme() {
-  const themeSwitches = document.querySelectorAll('#theme-toggle, #mobile-theme-toggle');
+  const themeButtons = document.querySelectorAll('#theme-toggle, #mobile-theme-toggle');
   
   // Load saved theme
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme === 'dark') {
     document.body.classList.add('dark-theme');
-    themeSwitches.forEach(toggle => toggle.checked = true);
   }
+  // Reflect state on buttons
+  const isDark = document.body.classList.contains('dark-theme');
+  themeButtons.forEach(btn => btn.setAttribute('aria-pressed', isDark ? 'true' : 'false'));
   
-  // Theme switch event listeners
-  themeSwitches.forEach(toggle => {
-    toggle.addEventListener('change', function() {
-      if (this.checked) {
-        document.body.classList.add('dark-theme');
-        localStorage.setItem('theme', 'dark');
-        themeSwitches.forEach(t => t.checked = true);
-      } else {
-        document.body.classList.remove('dark-theme');
-        localStorage.setItem('theme', 'light');
-        themeSwitches.forEach(t => t.checked = false);
-      }
+  // Theme button event listeners
+  themeButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      document.body.classList.toggle('dark-theme');
+      const darkNow = document.body.classList.contains('dark-theme');
+      localStorage.setItem('theme', darkNow ? 'dark' : 'light');
+      themeButtons.forEach(btn => btn.setAttribute('aria-pressed', darkNow ? 'true' : 'false'));
     });
   });
 }
 
 // Mobile Menu
 function initMobileMenu() {
-  const menuToggle = document.querySelector('.menu-toggle');
+  const menuToggle = document.querySelector('.hamburger-menu');
   const mobileMenu = document.querySelector('.mobile-menu');
   const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
   
   if (menuToggle && mobileMenu) {
     menuToggle.addEventListener('click', function() {
       mobileMenu.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+      const expanded = menuToggle.classList.contains('active');
+      menuToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      mobileMenu.setAttribute('aria-hidden', expanded ? 'false' : 'true');
     });
     
     // Close menu when clicking a link
     mobileMenuLinks.forEach(link => {
       link.addEventListener('click', function() {
         mobileMenu.classList.remove('active');
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
       });
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      }
     });
   }
 }
