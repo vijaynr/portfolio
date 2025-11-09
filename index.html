@@ -1,246 +1,522 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="light"> <!-- Default to light mode -->
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vijayasankar's Portfolio</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="manifest" href="site.webmanifest">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="css/styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vijayasankar ravindran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define CSS Variables for theming */
+        :root {
+            /* Light mode defaults (also used for .light) */
+            --cl-bg: #ffffff;
+            --cl-bg-secondary: #f9f9f9;
+            --cl-text: #222222;
+            --cl-text-secondary: #555555;
+            --cl-link: #0000ee;
+            --cl-link-hover: #0000aa;
+            --cl-border: #e0e0e0;
+            --cl-border-secondary: #cccccc;
+        }
+
+        .dark {
+            /* Dark mode overrides */
+            --cl-bg: #1a1a1a;
+            --cl-bg-secondary: #2a2a2a;
+            --cl-text: #f0f0f0;
+            --cl-text-secondary: #bbbbbb;
+            --cl-link: #8ab4f8;
+            --cl-link-hover: #b3cfff;
+            --cl-border: #444444;
+            --cl-border-secondary: #555555;
+        }
+
+        /* Apply variables */
+        body {
+            background-color: var(--cl-bg);
+            color: var(--cl-text);
+            font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Main container */
+        #app {
+            background-color: var(--cl-bg);
+            border: 1px solid var(--cl-border);
+        }
+
+        /* Links */
+        a {
+            color: var(--cl-link);
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: var(--cl-link-hover);
+        }
+
+        /* No-style links (for titles, etc.) */
+        a.no-style {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a.no-style:hover {
+            text-decoration: underline;
+            color: var(--cl-link);
+        }
+
+        /* Navigation links */
+        nav a {
+            color: var(--cl-link);
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+            /* Default state for active link styling */
+            font-weight: 400;
+        }
+
+        nav a:hover {
+            opacity: 0.7;
+            transform: translateY(-1px);
+        }
+
+        /* Section headers */
+        h2 {
+            color: var(--cl-text-secondary);
+        }
+
+        /* List backgrounds */
+        .list-item-bg {
+            background-color: var(--cl-bg-secondary);
+            border: 1px solid var(--cl-border);
+        }
+
+        /* Borders */
+        .header-border {
+            border-bottom: 2px solid var(--cl-text);
+        }
+
+        .section-border {
+            border-bottom: 1px solid var(--cl-border-secondary);
+        }
+        
+        /* Skill tags */
+        .skill-tag {
+             border: 1px solid var(--cl-border-secondary);
+        }
+
+        /* Text colors */
+        .text-secondary {
+            color: var(--cl-text-secondary);
+        }
+
+        /* Highlighted secondary heading */
+        .highlight {
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                transparent 20%, 
+                rgba(255, 255, 0, 0.4) 20%, 
+                rgba(255, 255, 0, 0.4) 85%, 
+                transparent 85%, 
+                transparent 100%);
+            padding: 0 0.2em;
+            display: inline;
+        }
+
+        .dark .highlight {
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                transparent 20%, 
+                rgba(255, 255, 0, 0.25) 20%, 
+                rgba(255, 255, 0, 0.25) 85%, 
+                transparent 85%, 
+                transparent 100%);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--cl-border);
+        }
+
+        /* Project tech tags */
+        .tech-tag {
+            background-color: var(--cl-bg);
+            border: 1px solid var(--cl-border-secondary);
+        }
+
+        /* Theme toggle button */
+        #mode-toggle {
+            color: var(--cl-text);
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        #mode-toggle:hover {
+            opacity: 1;
+        }
+
+        /* --- Scrollbar Styling --- */
+        body::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background: var(--cl-bg-secondary);
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: var(--cl-border-secondary);
+            border-radius: 6px;
+            border: 3px solid var(--cl-bg-secondary);
+        }
+    </style>
 </head>
 
-<body>
-  <header class="header">
-    <div class="container">
-      <a href="#" class="logo">VIJAYASANKAR RAVINDRAN</a>
-  <nav class="nav-desktop" aria-label="Primary">
-        <ul>
-          <li><a href="#home">HOME</a></li>
-          <li><a href="#education">EDUCATION</a></li>
-          <li><a href="#experience">EXPERIENCE</a></li>
-          <li><a href="#projects">PROJECTS</a></li>
-          <li><a href="#skills">SKILLS</a></li>
-          <li><a href="#contact">CONTACT</a></li>
-          <li>
-            <button class="theme-toggle-button" id="theme-toggle" aria-label="Toggle theme" aria-pressed="false">
-              <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="5"/>
-                <line x1="12" y1="1" x2="12" y2="3"/>
-                <line x1="12" y1="21" x2="12" y2="23"/>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                <line x1="1" y1="12" x2="3" y2="12"/>
-                <line x1="21" y1="12" x2="23" y2="12"/>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-              </svg>
-              <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-              </svg>
-            </button>
-          </li>
-        </ul>
-      </nav>
-      <div class="nav-mobile">
-        <button class="theme-toggle-button" id="mobile-theme-toggle" aria-label="Toggle theme" aria-pressed="false">
-          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="5"/>
-            <line x1="12" y1="1" x2="12" y2="3"/>
-            <line x1="12" y1="21" x2="12" y2="23"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="1" y1="12" x2="3" y2="12"/>
-            <line x1="21" y1="12" x2="23" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-          </svg>
-          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-          </svg>
+<body class="light">
+    <!-- Main App Container -->
+    <div id="app"
+        class="relative max-w-4xl mx-auto my-4 sm:my-8 p-4 sm:p-8 rounded-md shadow-sm">
+
+        <!-- Theme Toggle Button -->
+        <button id="mode-toggle"
+            class="absolute top-4 right-4 md:top-8 md:right-8 z-10 p-2 rounded-full focus:outline-none">
+            <!-- Icon is set by JS -->
         </button>
-        <button class="hamburger-menu" aria-label="Toggle menu" aria-controls="mobile-menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
+
+        <!-- HEADER -->
+        <header class="pb-4 mb-8 header-border">
+            <h1 class="text-3xl sm:text-4xl font-bold">
+                <a href="#top" class="no-style highlight">vijayasankar ravindran</a>
+            </h1>
+            <p class="text-lg sm:text-xl text-secondary">
+              a software developer and an everything tinkerer
+            </p>
+
+            <div class="mt-2 sm:mt-0 flex flex-col items-end">
+                <nav class="mt-4 text-lg space-x-4">
+                    <a href="#experience">Experience</a>
+                    <a href="#education">Education</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#skills">Skills</a>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <!-- WHO AM I -->
+            <section id="who-am-i" class="mb-10">
+                <h2 class="text-2xl font-semibold pb-1 mb-4 section-border">
+                    who am i?
+                </h2>
+                <div class="list-item-bg p-4 rounded-md">
+                    <p class="text-lg">
+                        I am a full-stack developer with 7+ years of experience specializing in enterprise applications. 
+                        I focus on clean, efficient code and maintainable architectures using Java, Spring Framework, and Angular. 
+                        My goal is to build solutions that last.
+                    </p>
+                </div>
+            </section>
+
+            <!-- EXPERIENCE -->
+            <section id="experience" class="mb-10">
+                <h2 class="text-2xl font-semibold pb-1 mb-4 section-border">
+                    experience
+                </h2>
+                <ul class="space-y-6">
+                    <!-- Job 1 -->
+                    <li class="list-item-bg p-4 rounded-md">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-xl font-bold">
+                                <span class="no-style">OpenText</span>
+                            </h3>
+                            <span class="text-sm flex-shrink-0 ml-4 text-secondary">Senior Software Engineer</span>
+                        </div>
+                        <span class="text-sm text-secondary">Mar 2022 - Present | Bengaluru</span>
+                        <p class="mt-2">
+                            Defined and developed feature backlogs as Product Owner. Led design and delivery of key features across two enterprise products, Filr and Vibe, as Technical Lead. Performed security audits and resolved vulnerabilities in accordance with the Service Level Agreements. Optimized the build process of Filr, reducing the build time by 70%. Established coding standards within the team, enhancing code quality. Refactored and modernized the legacy codebases with updated dependencies and best practices, improving non-functional performance by 50%.
+                        </p>
+                    </li>
+                    <!-- Job 2 -->
+                    <li class="list-item-bg p-4 rounded-md">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-xl font-bold">
+                                <span class="no-style">Micro Focus</span>
+                            </h3>
+                            <span class="text-sm flex-shrink-0 ml-4 text-secondary">Software Engineer</span>
+                        </div>
+                        <span class="text-sm text-secondary">Mar 2020 - Feb 2022 | Bengaluru</span>
+                        <p class="mt-2">
+                            Designed and developed various features, including file versioning and thumbnail generation, based on the most requested features from customers. Contributed to migrating the legacy frontend from GWT to Angular by working on REST APIs and UI components in Angular.
+                        </p>
+                    </li>
+                    <!-- Job 3 -->
+                    <li class="list-item-bg p-4 rounded-md">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-xl font-bold">
+                                <span class="no-style">Micro Focus</span>
+                            </h3>
+                            <span class="text-sm flex-shrink-0 ml-4 text-secondary">Associate Software Engineer</span>
+                        </div>
+                        <span class="text-sm text-secondary">July 2017 - Feb 2020 | Bengaluru</span>
+                        <p class="mt-2">
+                            Worked with customers to address critical issues and enhancements, attaining a 100% closure rate on incidents. Packaged the existing Linux Desktop Client of Filr for SUSE and Ubuntu, which was the most requested feature by the Filr community forum. Contributed to the development of the macOS and Windows Client for Cloud Integrated Storage, a component of Open Enterprise Server, which played a crucial role in securing its first customer.
+                        </p>
+                    </li>
+                    <!-- Job 4 -->
+                    <li class="list-item-bg p-4 rounded-md">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-xl font-bold">
+                                <span class="no-style">Micro Focus</span>
+                            </h3>
+                            <span class="text-sm flex-shrink-0 ml-4 text-secondary">Internship</span>
+                        </div>
+                        <span class="text-sm text-secondary">Jan 2017 - Jun 2017 | Bengaluru</span>
+                        <p class="mt-2">
+                            Created proofs of concept for a product called Filr, an Enterprise File Sync and Share solution. Developed the Linux client for Filr using Filesystem in Userspace (FUSE) technology with Python. Designed and developed a feedback-based recommendation system for Filr.
+                        </p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- EDUCATION -->
+            <section id="education" class="mb-10">
+                <h2 class="text-2xl font-semibold pb-1 mb-4 section-border">
+                    alma mater
+                </h2>
+                <ul class="space-y-6">
+                    <li class="list-item-bg p-4 rounded-md">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-xl font-bold">
+                                <span class="no-style">PSG College of Technology</span>
+                            </h3>
+                            <span class="text-sm flex-shrink-0 ml-4 text-secondary">Bachelor of Engineering in Electronics and Communication</span>
+                        </div>
+                        <span class="text-sm text-secondary">2013 - 2017 | Coimbatore</span>
+                        <p class="mt-2">
+                            Graduated with honors. Focused on learning micro processors and embedded programming.
+                        </p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- PROJECTS -->
+            <section id="projects" class="mb-10">
+                <h2 class="text-2xl font-semibold pb-1 mb-4 section-border">
+                    projects / artifacts
+                </h2>
+                <ul class="space-y-2">
+                    <!-- Project 1 -->
+                    <li class="list-item-bg p-3 rounded-md">
+                        <h3 class="text-xl font-bold mb-1">
+                            <a href="https://www.microfocus.com/documentation/open-enterprise-server/2023/cis_admin_lx/t4b3w08q8icu.html" target="_blank">Mac Kernel Extension</a>
+                        </h3>
+                        <p class="text-sm">
+                            Developed a kernel extension for macOS to detect and stop unnecessary downloads of archived files on network mounts.
+                        </p>
+                    </li>
+                    <!-- Project 2 -->
+                    <li class="list-item-bg p-3 rounded-md">
+                        <h3 class="text-xl font-bold mb-1">
+                            <span>Multi Factor Authentication</span>
+                        </h3>
+                        <p class="text-sm">
+                            The implementation of Multi-Factor Authentication uses the Backend for Frontend Proxy pattern and OAuth2. This approach provides a seamless experience for both confidential and public clients.
+                        </p>
+                        <div class="mt-2 flex flex-wrap gap-1">
+                            <span class="text-xs px-2 py-0.5 rounded tech-tag">Java</span>
+                            <span class="text-xs px-2 py-0.5 rounded tech-tag">Spring</span>
+                        </div>
+                    </li>
+                    <!-- Project 3 -->
+                    <li class="list-item-bg p-3 rounded-md">
+                        <h3 class="text-xl font-bold mb-1">
+                            <span>File Versioning</span>
+                        </h3>
+                        <p class="text-sm">
+                            Flat file based versioning system that enables users to store, manage, and access various file versions, with the added capability of removing surplus and expired file versions based on configured policies.
+                        </p>
+                        <div class="mt-2 flex flex-wrap gap-1">
+                            <span class="text-xs px-2 py-0.5 rounded tech-tag">Java</span>
+                            <span class="text-xs px-2 py-0.5 rounded tech-tag">Spring</span>
+                            <span class="text-xs px-2 py-0.5 rounded tech-tag">Angular</span>
+                        </div>
+                    </li>
+                    <!-- Project 4 -->
+                    <li class="list-item-bg p-3 rounded-md">
+                        <h3 class="text-xl font-bold mb-1">
+                            <span>Thumbnail Previews</span>
+                        </h3>
+                        <p class="text-sm">
+                            Generating and displaying thumbnails for documents, videos and CAD files in Filr.
+                        </p>
+                        <div class="mt-2 flex flex-wrap gap-1">
+                            <span class="text-xs px-2 py-0.5 rounded tech-tag">Java</span>
+                            <span class="text-xs px-2 py-0.5 rounded tech-tag">AWT</span>
+                            <span class="text-xs px-2 py-0.5 rounded tech-tag">FFMPEG</span>
+                            <span class="text-xs px-2 py-0.5 rounded tech-tag">Angular</span>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- SKILLS -->
+            <section id="skills" class="mb-10">
+                <h2 class="text-2xl font-semibold pb-1 mb-4 section-border">
+                    skills and technologies
+                </h2>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-sm p-1 rounded-sm skill-tag">Java</span>
+                    <span class="text-sm p-1 rounded-sm skill-tag">Spring Framework</span>
+                    <span class="text-sm p-1 rounded-sm skill-tag">Angular</span>
+                    <span class="text-sm p-1 rounded-sm skill-tag">J2EE</span>
+                    <span class="text-sm p-1 rounded-sm skill-tag">Web Technologies</span>
+                </div>
+            </section>
+        </main>
+
+        <!-- FOOTER: Simple Contact/Meta Info -->
+        <footer class="pt-6 mt-10 text-center">
+            <p class="text-secondary">
+                © 2024 Vijayasankar Ravindran. This site is a minimalist experiment.
+            </p>
+            <p class="mt-2">
+                <a href="#top">back to top</a>
+            </p>
+        </footer>
     </div>
-  <div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile" aria-hidden="true">
-      <ul>
-        <li><a href="#home">HOME</a></li>
-        <li><a href="#education">EDUCATION</a></li>
-        <li><a href="#experience">EXPERIENCE</a></li>
-        <li><a href="#projects">PROJECTS</a></li>
-        <li><a href="#skills">SKILLS</a></li>
-        <li><a href="#contact">CONTACT</a></li>
-      </ul>
-    </div>
-  </header>
 
-  <main>
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-      <div class="container">
-        <div class="hero-content">
-          <div class="hero-text">
-            <h1 class="hero-title">SOFTWARE DEVELOPER</h1>
-            <p>Building secure, stable and scallable web technologies</p>
-            <div class="hero-buttons">
-              <a href="#projects" class="pixel-button">VIEW PROJECTS</a>
-              <a href="#contact" class="pixel-button secondary">CONTACT ME</a>
-              <a href="docs/resume.pdf" class="pixel-button" download="Vijayasankar_Resume.pdf">DOWNLOAD RESUME</a>
-            </div>
-          </div>
-          <div class="hero-avatar">
-            <div class="pixel-dissolve-container">
-              <img src="images/mehd.png" alt="this is me in hd" class="image-front" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Alma Mater Section -->
-    <section id="education" class="education">
-      <div class="container">
-        <div class="section-header">
-          <h2>ALMA MATER</h2>
-          <div class="section-line"></div>
-          <p>Where I leveled up my knowledge</p>
-        </div>
+    <script>
+        // FIX: Wrap all script logic in DOMContentLoaded to ensure 'document.body'
+        // and all other elements are available before the script runs.
+        document.addEventListener('DOMContentLoaded', (event) => {
 
-        <div class="education-grid">
-          <!-- Education cards will be dynamically inserted here by JavaScript -->
-        </div>
-      </div>
-    </section>
+            console.log("DOM fully loaded and parsed. Portfolio script initializing...");
 
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-      <div class="container">
-        <div class="section-header">
-          <h2>EXPERIENCE</h2>
-          <div class="section-line"></div>
-          <p>My professional quests and adventures</p>
-        </div>
+            // JavaScript for Dark Mode Toggle functionality
+            const toggleButton = document.getElementById('mode-toggle');
 
-        <div class="experience-grid">
-          <!-- Experience items will be dynamically inserted here by JavaScript -->
-        </div>
-      </div>
-    </section>
+            // Define SVG icons
+            const moonIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>`;
+            const sunIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>`;
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-      <div class="container">
-        <div class="section-header">
-          <h2>PROJECTS</h2>
-          <div class="section-line"></div>
-          <p>Check out my previous and current quests</p>
-        </div>
+            // Check for saved theme preference or default to system preference
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            let currentTheme = 'light';
 
-        <div class="projects-grid">
-          <!-- Project cards will be dynamically inserted here by JavaScript -->
-        </div>
-      </div>
-    </section>
+            if (savedTheme) {
+                currentTheme = savedTheme;
+            } else if (systemPrefersDark) {
+                currentTheme = 'dark';
+            }
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-      <div class="container">
-        <div class="section-header">
-          <h2>SKILLS</h2>
-          <div class="section-line"></div>
-          <p>My character stats and abilities</p>
-        </div>
+            const applyTheme = (theme) => {
+                const html = document.documentElement;
+                const body = document.body; // body is guaranteed to exist here
+                if (theme === 'dark') {
+                    html.classList.remove('light');
+                    html.classList.add('dark');
+                    body.classList.remove('light');
+                    body.classList.add('dark');
+                    toggleButton.innerHTML = sunIconSVG;
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    html.classList.remove('dark');
+                    html.classList.add('light');
+                    body.classList.remove('dark');
+                    body.classList.add('light');
+                    toggleButton.innerHTML = moonIconSVG;
+                    localStorage.setItem('theme', 'light');
+                }
+            };
 
-        <div class="skills-grid">
-          <!-- Skill bars will be dynamically inserted here by JavaScript -->
-        </div>
+            // Set initial theme
+            applyTheme(currentTheme);
 
-        <div class="stats-grid">
-          <!-- Stats will be dynamically inserted here by JavaScript -->
-        </div>
-      </div>
-    </section>
+            // Add click listener for the toggle button
+            toggleButton.addEventListener('click', () => {
+                const html = document.documentElement;
+                const newTheme = html.classList.contains('dark') ? 'light' : 'dark';
+                applyTheme(newTheme);
+            });
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <div class="section-header">
-          <h2>CONTACT</h2>
-          <div class="section-line"></div>
-          <p>Send me a message to start our collaboration</p>
-        </div>
+            // Fallback for scrolling up
+            const topLink = document.querySelector('a[href="#top"]');
+            if (topLink) {
+                topLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
 
-        <div class="contact-container">
-          <form id="contact-form" class="contact-form">
-            <div class="form-group">
-              <label for="name">NAME</label>
-              <input type="text" id="name" name="name" class="pixel-input" placeholder="Enter your name" required />
-            </div>
-            <div class="form-group">
-              <label for="email">EMAIL</label>
-              <input type="email" id="email" name="email" class="pixel-input" placeholder="Enter your email" required />
-            </div>
-            <div class="form-group">
-              <label for="message">MESSAGE</label>
-              <textarea id="message" name="message" class="pixel-input" placeholder="Type your message here" rows="5"
-                required></textarea>
-            </div>
-            <button type="submit" class="pixel-button">SEND MESSAGE</button>
-          </form>
+            // --- Smooth Scrolling for Nav Links ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                const href = anchor.getAttribute('href');
+                // Exclude links that shouldn't be smooth-scrolled
+                if (href !== '#top' && href !== '#') {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault(); // <-- This should prevent the refresh
+                        const targetId = this.getAttribute('href');
+                        try {
+                            const targetElement = document.querySelector(targetId);
+                            if (targetElement) {
+                                console.log('Scrolling to:', targetId); // Diagnostic log
+                                targetElement.scrollIntoView({
+                                    behavior: 'smooth'
+                                });
+                            } else {
+                                console.warn('Smooth scroll target not found:', targetId);
+                            }
+                        } catch (err) {
+                            console.error('Error finding smooth scroll target:', err, targetId);
+                        }
+                    });
+                }
+            });
 
-          <div class="contact-info">
-            <div class="pixel-card">
-              <h3>CONTACT INFO</h3>
-              <ul>
-                <li>
-                  <span class="info-label">EMAIL:</span>
-                  <span class="info-value">vj.co.dev@gmail.com</span>
-                </li>
-                <li>
-                  <span class="info-label">LOCATION:</span>
-                  <span class="info-value">Bengaluru, Karnataka</span>
-                </li>
-                <li>
-                  <span class="info-label">AVAILABILITY:</span>
-                  <span class="info-value">Open for hire</span>
-                </li>
-              </ul>
+            // --- Active Nav Link on Scroll ---
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a');
+            const scrollOffset = 100; // Offset from the top to trigger the change
 
-              <div class="social-links">
-                <a href="https://github.com/vijaynr" class="social-link">GitHub</a>
-                <a href="https://www.linkedin.com/in/vijayasankarr" class="social-link">LinkedIn</a>
-                <a href="https://x.com/vjaynr" class="social-link">X/Twitter</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+            const activateNavLink = () => {
+                let currentSection = '';
 
-  <footer class="footer">
-    <div class="container">
-      <p class="footer-credit">
-        <span>Tech used: HTML, CSS & JS</span>
-      </p>
-      <p class="footer-credit">
-        <span>Tools used: Replit, favicon.io, make8bitart.com, GH Copilot, GH Pages, ChatGPT</span>
-      </p>
-    </div>
-  </footer>
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    // Check if scroll position is within the section, with an offset
+                    if (window.scrollY >= (sectionTop - scrollOffset) && window.scrollY < (sectionTop + sectionHeight - scrollOffset)) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
 
-  <script src="js/data.js"></script>
-  <script src="js/script.js"></script>
+                // Fallback logic
+                if (currentSection === '') {
+                    if (window.scrollY < 100) {
+                        currentSection = 'experience';
+                    } else if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+                        currentSection = 'skills';
+                    }
+                }
+
+                navLinks.forEach(link => {
+                    link.classList.remove('font-bold');
+                    if (link.getAttribute('href') === `#${currentSection}`) {
+                        // Active link - no styling change
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', activateNavLink);
+            activateNavLink(); // Call once on load
+        });
+    </script>
 </body>
 
 </html>
