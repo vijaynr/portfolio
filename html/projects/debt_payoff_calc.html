@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debt Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #f7f3e8; /* Subtle beige background */
+            --text-body: #1e1e1e;
+            --text-header: #000000;
+            --text-subheader: #4a4a4a;
+            --text-toggle-icon: #4a4a4a;
+            --bg-toggle-hover: #e0e0e0;
+            
+            --border-primary: #1e1e1e;
+            --border-secondary: #d1d1d1;
+            
+            --shadow-hard: 4px 4px 0px 0px var(--border-primary);
+            --shadow-hard-sm: 2px 2px 0px 0px var(--border-primary);
+
+            --stat-card-bg: #ffffff;
+            --loan-card-bg: #ffffff;
+
+            --btn-primary-bg: #3b82f6; /* Primary blue */
+            --btn-primary-text: #ffffff;
+            --btn-primary-hover-bg: #2563eb;
+            --btn-primary-shadow: 4px 4px 0px 0px var(--border-primary);
+
+            --btn-secondary-bg: #f7f3e8;
+            --btn-secondary-text: #1e1e1e;
+            --btn-secondary-hover-bg: #e9e5d9;
+            
+            --btn-danger-bg: #ef4444;
+            --btn-danger-hover-bg: #dc2626;
+
+            --input-text: #000000;
+            --input-bg: #ffffff;
+            --input-placeholder: #6b7280;
+
+            --summary-text-header: #000000;
+            --summary-total-bg: #dbeafe; /* Light blue */
+            --summary-total-text: #1e3a8a;
+
+            --table-bg: #ffffff;
+            --table-header-bg: #f7f3e8;
+            --table-header-text: #1e1e1e;
+            --placeholder-text: #4a4a4a;
+            
+            --paid-off-text: #9ca3af;
+            --paid-off-bg: #f9fafb;
+            
+            --checkbox-bg: #ffffff;
+            --checkbox-border: var(--border-primary);
+
+            --text-interest: #dc2626;
+            --text-principal: #16a34a;
+
+            --scrollbar-track: #e9e5d9;
+            --scrollbar-thumb: #94a3b8;
+            --scrollbar-thumb-hover: #475569;
+        }
+
+        html.dark {
+            --bg-body: #1a2233; /* Dark desaturated blue */
+            --text-body: #cdd6f4;
+            --text-header: #ffffff;
+            --text-subheader: #a6adc8;
+            --text-toggle-icon: #a6adc8;
+            --bg-toggle-hover: #313b4f;
+            
+            --border-primary: #ffffff; /* White borders for dark mode */
+            --border-secondary: #414b60;
+
+            --stat-card-bg: #242e42;
+            --loan-card-bg: #242e42;
+            
+            --btn-primary-bg: #3b82f6;
+            --btn-primary-text: #ffffff;
+            --btn-primary-hover-bg: #60a5fa;
+            --btn-primary-shadow: 4px 4px 0px 0px var(--border-primary);
+
+            --btn-secondary-bg: #313b4f;
+            --btn-secondary-text: #cdd6f4;
+            --btn-secondary-hover-bg: #414b60;
+
+            --btn-danger-bg: #ef4444;
+            --btn-danger-hover-bg: #f87171;
+
+            --input-text: #ffffff;
+            --input-bg: #1a2233;
+            --input-placeholder: #6b7280;
+
+            --summary-text-header: #ffffff;
+            --summary-total-bg: #1e3a8a;
+            --summary-total-text: #dbeafe;
+
+            --table-bg: #242e42;
+            --table-header-bg: #1a2233;
+            --table-header-text: #cdd6f4;
+            --placeholder-text: #a6adc8;
+            
+            --paid-off-text: #6b7280;
+            --paid-off-bg: #1f2937;
+            
+            --checkbox-bg: #1a2233;
+            --checkbox-border: var(--border-primary);
+
+            --text-interest: #f87171;
+            --text-principal: #86efac;
+            
+            --scrollbar-track: #1e293b;
+            --scrollbar-thumb: #475569;
+            --scrollbar-thumb-hover: #64748b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-body);
+        }
+        .table-cell {
+            padding: 8px 12px;
+            text-align: right;
+            border: 2px solid var(--border-secondary);
+            font-size: 0.875rem;
+        }
+        .table-header {
+            background-color: var(--table-header-bg);
+            font-weight: 600;
+            color: var(--table-header-text);
+        }
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid var(--border-primary);
+            background-color: var(--input-bg);
+            color: var(--input-text);
+            border-radius: 0.375rem; /* 6px */
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+        .input-field::placeholder {
+            color: var(--input-placeholder);
+        }
+        .input-field:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px var(--btn-primary-bg);
+        }
+        
+        .card {
+            border: 2px solid var(--border-primary);
+            padding: 1.5rem;
+            border-radius: 0.5rem; /* 8px */
+            box-shadow: var(--shadow-hard);
+            transition: box-shadow 0.2s;
+        }
+        .stat-card {
+            background-color: var(--stat-card-bg);
+        }
+        .loan-card {
+            background-color: var(--loan-card-bg);
+            padding: 1rem;
+            position: relative;
+            box-shadow: var(--shadow-hard-sm);
+        }
+        .remove-loan-btn {
+            position: absolute;
+            top: -0.75rem;
+            right: -0.75rem;
+            background-color: var(--btn-danger-bg);
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px solid var(--border-primary);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1.25rem;
+            box-shadow: var(--shadow-hard-sm);
+        }
+        .remove-loan-btn:hover {
+            background-color: var(--btn-danger-hover-bg);
+            transform: translate(2px, 2px);
+            box-shadow: none;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 0;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--scrollbar-thumb-hover);
+        }
+        .paid-off {
+            text-decoration: line-through;
+            color: var(--paid-off-text);
+        }
+        .paid-off td {
+            background-color: var(--paid-off-bg) !important;
+        }
+        
+        /* New helper classes */
+        .header-title { color: var(--text-header); }
+        .header-subtitle { color: var(--text-subheader); }
+        .theme-toggle-btn {
+            color: var(--text-toggle-icon);
+            border-radius: 9999px;
+            border: 2px solid var(--border-primary);
+            background-color: var(--stat-card-bg);
+        }
+        .theme-toggle-btn:hover {
+            background-color: var(--bg-toggle-hover);
+        }
+        .card-header-border { border-color: var(--border-secondary); }
+        
+        .btn {
+            font-weight: 600;
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem; /* 6px */
+            transition: all 0.2s;
+            border: 2px solid var(--border-primary);
+            cursor: pointer;
+        }
+        .btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: none !important;
+        }
+
+        .btn-primary {
+            background-color: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
+            box-shadow: var(--btn-primary-shadow);
+        }
+        .btn-primary:hover {
+            background-color: var(--btn-primary-hover-bg);
+        }
+
+        .add-loan-btn {
+            background-color: var(--btn-secondary-bg);
+            color: var(--btn-secondary-text);
+            box-shadow: var(--shadow-hard-sm);
+        }
+        .add-loan-btn:hover {
+            background-color: var(--btn-secondary-hover-bg);
+        }
+        .add-loan-btn:active {
+            transform: translate(1px, 1px);
+        }
+        
+        .btn-export {
+            background-color: #16a34a; /* Green */
+            color: #ffffff;
+            box-shadow: var(--shadow-hard-sm);
+        }
+        .btn-export:hover {
+            background-color: #15803d;
+        }
+        .btn-export:active {
+             transform: translate(1px, 1px);
+        }
+
+
+        .summary-header-text { color: var(--summary-text-header); }
+        .summary-savings-box {
+            background-color: var(--summary-total-bg);
+            color: var(--summary-total-text);
+            border: 2px solid var(--border-primary);
+            border-radius: 0.375rem; /* 6px */
+        }
+        .table-wrapper {
+            background-color: var(--table-bg);
+            border: 2px solid var(--border-primary);
+            border-radius: 0.5rem; /* 8px */
+            box-shadow: var(--shadow-hard);
+        }
+        .placeholder-text { color: var(--placeholder-text); }
+        .prepayment-checkbox {
+            background-color: var(--checkbox-bg);
+            border: 2px solid var(--checkbox-border);
+            border-radius: 0.25rem;
+        }
+        .prepayment-checkbox:checked {
+            background-color: var(--btn-primary-bg);
+            border-color: var(--btn-primary-bg);
+        }
+        
+        .text-interest { color: var(--text-interest); }
+        .text-principal { color: var(--text-principal); }
+    </style>
+</head>
+<body class="transition-colors duration-300">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="mb-8 text-center relative">
+            <h1 class="text-3xl md:text-4xl font-bold header-title">Debt Management Console</h1>
+            <button id="theme-toggle" class="absolute top-0 right-0 p-2 theme-toggle-btn focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                <svg id="theme-icon-light" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                <svg id="theme-icon-dark" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            </button>
+        </header>
+
+        <div class="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
+            
+            <div class="space-y-6">
+                <div class="stat-card card">
+                    <h2 class="text-xl font-semibold mb-4 border-b-2 pb-2 card-header-border">Your Loans</h2>
+                    <div id="loan-list" class="space-y-4 mb-4">
+                        <!-- Loan cards will be injected here -->
+                    </div>
+                    <button id="addLoanBtn" class="w-full btn add-loan-btn">
+                        + Add Another Loan
+                    </button>
+                </div>
+                
+                <div class="stat-card card">
+                    <h2 class="text-xl font-semibold mb-4 border-b-2 pb-2 card-header-border">Financial Plan</h2>
+                    
+                    <div class="mb-4">
+                        <label for="totalMonthlyAmount" class="block text-sm font-medium mb-1">Total Monthly Amount Available (₹)</label>
+                        <input type="number" id="totalMonthlyAmount" class="input-field" value="20000" placeholder="e.g., 20000">
+                        <p class="text-xs text-secondary mt-1">Total amount you can allocate monthly</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="prepaymentPercentage" class="block text-sm font-medium mb-1">Prepayment Allocation (%)</label>
+                        <input type="range" id="prepaymentPercentage" class="w-full" min="0" max="100" value="50" step="5">
+                        <div class="flex justify-between text-xs text-secondary mt-1">
+                            <span>0%</span>
+                            <span id="prepaymentPercentageDisplay" class="font-semibold">50%</span>
+                            <span>100%</span>
+                        </div>
+                        <div class="mt-2 flex justify-between text-sm">
+                            <div>
+                                <span class="text-secondary">Prepayment:</span>
+                                <span id="calculatedPrepayment" class="font-semibold ml-1">₹10,000</span>
+                            </div>
+                            <div>
+                                <span class="text-secondary">Investment:</span>
+                                <span id="calculatedInvestment" class="font-semibold ml-1">₹10,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="strategySelect" class="block text-sm font-medium mb-1">Debt Strategy</label>
+                        <select id="strategySelect" class="input-field">
+                            <option value="snowball">Snowball (Lowest Balance First)</option>
+                            <option value="avalanche">Avalanche (Highest Rate First)</option>
+                            <option value="custom">Custom Priority</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="investmentRate" class="block text-sm font-medium mb-1">Expected Investment Return (% p.a.)</label>
+                        <input type="number" id="investmentRate" class="input-field" value="12" placeholder="e.g., 12" step="0.1">
+                        <p class="text-xs text-secondary mt-1">Annual return rate of your investment</p>
+                    </div>
+                    
+                    <button id="calculateBtn" class="w-full btn btn-primary mt-4">
+                        Calculate & Compare All Scenarios
+                    </button>
+                </div>
+
+                <div id="summary" class="stat-card card hidden">
+                     <h2 class="text-xl font-semibold mb-4 border-b-2 pb-2 card-header-border">Summary</h2>
+                     <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="font-medium">Total Minimum EMI:</span>
+                            <span id="totalEMI" class="font-semibold summary-header-text"></span>
+                        </div>
+                        <hr class="card-header-border">
+                        <h3 class="font-semibold text-lg pt-2 text-principal">With Snowball</h3>
+                        <div class="flex justify-between">
+                            <span>Debt-Free Date:</span>
+                            <span id="newEndDate" class="font-semibold"></span>
+                        </div>
+                         <div class="flex justify-between">
+                            <span>Total Interest Paid:</span>
+                            <span id="newTotalInterest" class="font-semibold"></span>
+                        </div>
+                         <div class="flex justify-between">
+                            <span>Time Reduced By:</span>
+                            <span id="tenureReduced" class="font-semibold text-principal"></span>
+                        </div>
+                        <hr class="card-header-border">
+                        <h3 class="font-semibold text-lg pt-2 text-interest">Without Snowball</h3>
+                        <div class="flex justify-between">
+                            <span>Original Payoff Date:</span>
+                            <span id="originalEndDate" class="font-semibold"></span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Original Total Interest:</span>
+                            <span id="originalTotalInterest" class="font-semibold"></span>
+                        </div>
+                        <hr class="card-header-border">
+                        <div class="flex justify-between text-xl font-bold p-3 summary-savings-box">
+                            <span>Total Interest Saved:</span>
+                            <span id="totalSavings"></span>
+                        </div>
+                        
+                        <div id="investmentComparison" class="mt-4 p-3 border-2 rounded" style="border-color: var(--border-primary); background-color: var(--stat-card-bg); display: none;">
+                            <h4 class="font-semibold mb-2">💰 Prepayment vs Investment Comparison</h4>
+                            
+                            <!-- Scenario 1: Only Prepayment -->
+                            <div id="scenario1Card" class="mb-3 p-2 rounded" style="background-color: var(--loan-card-bg);">
+                                <h5 class="font-semibold text-sm mb-2 text-principal">📉 Scenario 1: Only Debt Prepayment <span id="scenario1Badge" class="hidden ml-2 text-xs px-2 py-1 rounded" style="background-color: var(--text-principal); color: white;">🏆 BEST</span></h5>
+                                <div class="space-y-1 text-xs">
+                                    <div class="flex justify-between">
+                                        <span>Extra Payment:</span>
+                                        <span id="prepaymentAmount" class="font-semibold"></span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Interest Saved:</span>
+                                        <span id="interestSavedOnly" class="font-semibold text-principal"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Scenario 2: Only Investment -->
+                            <div id="scenario2Card" class="mb-3 p-2 rounded" style="background-color: var(--loan-card-bg);">
+                                <h5 class="font-semibold text-sm mb-2 text-principal">📈 Scenario 2: Only Investment <span id="scenario2Badge" class="hidden ml-2 text-xs px-2 py-1 rounded" style="background-color: var(--text-principal); color: white;">🏆 BEST</span></h5>
+                                <div class="space-y-1 text-xs">
+                                    <div class="flex justify-between">
+                                        <span>Monthly Investment:</span>
+                                        <span id="displayInvestmentAmount" class="font-semibold"></span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Investment Period:</span>
+                                        <span id="investmentPeriod" class="font-semibold"></span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Total Invested:</span>
+                                        <span id="totalInvested" class="font-semibold"></span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Investment Value:</span>
+                                        <span id="investmentValue" class="font-semibold text-principal"></span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Investment Gains:</span>
+                                        <span id="investmentGains" class="font-semibold text-principal"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Scenario 3: Both Combined -->
+                            <div id="scenario3Card" class="mb-3 p-2 rounded" style="background-color: var(--summary-total-bg);">
+                                <h5 class="font-semibold text-sm mb-2">🎯 Scenario 3: Both Prepayment + Investment <span id="scenario3Badge" class="hidden ml-2 text-xs px-2 py-1 rounded" style="background-color: var(--text-principal); color: white;">🏆 BEST</span></h5>
+                                <div class="space-y-1 text-xs">
+                                    <div class="flex justify-between">
+                                        <span>Total Monthly Outflow:</span>
+                                        <span id="totalMonthlyOutflow" class="font-semibold"></span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Interest Saved (Prepayment):</span>
+                                        <span id="combinedInterestSaved" class="font-semibold text-principal"></span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Investment Gains:</span>
+                                        <span id="combinedInvestmentGains" class="font-semibold text-principal"></span>
+                                    </div>
+                                    <hr class="my-2" style="border-color: var(--border-secondary);">
+                                    <div class="flex justify-between font-bold">
+                                        <span>Total Net Benefit:</span>
+                                        <span id="combinedNetBenefit" class="font-semibold text-principal"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <hr class="card-header-border my-2">
+                            <div class="text-sm p-3 rounded" style="background-color: var(--loan-card-bg); border: 2px solid var(--text-principal);">
+                                <div class="flex justify-between font-bold mb-2">
+                                    <span class="text-lg">🏆 Best Strategy:</span>
+                                    <span id="bestStrategy" class="font-semibold text-lg"></span>
+                                </div>
+                                <p id="recommendation" class="text-xs mt-2 italic p-2 rounded" style="background-color: var(--summary-total-bg);"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="table-wrapper p-2">
+                    <div class="flex justify-end mb-2 px-2">
+                         <button id="exportBtn" class="hidden btn btn-export py-1 px-3 text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                            Export to CSV
+                        </button>
+                    </div>
+                    <div id="table-container" class="max-h-[80vh] overflow-auto">
+                        <div id="placeholder" class="text-center py-20 placeholder-text">
+                            <p>Add your loans, enter an extra payment amount, and click "Calculate" to see your plan.</p>
+                        </div>
+                        <table id="paymentLedgerTable" class="w-full hidden whitespace-nowrap"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const addLoanBtn = document.getElementById('addLoanBtn');
+        const calculateBtn = document.getElementById('calculateBtn');
+        const exportBtn = document.getElementById('exportBtn');
+        const loanListContainer = document.getElementById('loan-list');
+        const placeholder = document.getElementById('placeholder');
+        const summaryCard = document.getElementById('summary');
+        const tableContainer = document.getElementById('paymentLedgerTable');
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const lightIcon = document.getElementById('theme-icon-light');
+        const darkIcon = document.getElementById('theme-icon-dark');
+        
+        // New slider controls
+        const totalMonthlyAmount = document.getElementById('totalMonthlyAmount');
+        const prepaymentPercentage = document.getElementById('prepaymentPercentage');
+        const prepaymentPercentageDisplay = document.getElementById('prepaymentPercentageDisplay');
+        const calculatedPrepayment = document.getElementById('calculatedPrepayment');
+        const calculatedInvestment = document.getElementById('calculatedInvestment');
+        
+        let loanIdCounter = 0;
+        let currentLedger = [];
+        const PLAN_STORAGE_KEY = 'debtPlanState';
+        
+        // Update calculated amounts when slider or total amount changes
+        function updateCalculatedAmounts() {
+            const total = parseFloat(totalMonthlyAmount.value) || 0;
+            const percentage = parseFloat(prepaymentPercentage.value) || 0;
+            const prepayment = total * (percentage / 100);
+            const investment = total - prepayment;
+            
+            prepaymentPercentageDisplay.textContent = `${percentage}%`;
+            calculatedPrepayment.textContent = formatCurrency(prepayment);
+            calculatedInvestment.textContent = formatCurrency(investment);
+        }
+        
+        totalMonthlyAmount.addEventListener('input', updateCalculatedAmounts);
+        prepaymentPercentage.addEventListener('input', updateCalculatedAmounts);
+
+        // --- Theme Handling ---
+        const applyTheme = (isDark) => {
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                lightIcon.classList.remove('hidden');
+                darkIcon.classList.add('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                lightIcon.classList.add('hidden');
+                darkIcon.classList.remove('hidden');
+            }
+        };
+
+        const userTheme = localStorage.getItem('theme');
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (userTheme === 'dark' || (!userTheme && systemTheme)) {
+            applyTheme(true);
+        } else {
+            applyTheme(false);
+        }
+        
+        themeToggleBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            applyTheme(isDark);
+        });
+        // --- End Theme Handling ---
+
+        const currencyFormatter = new Intl.NumberFormat('en-IN', {
+            style: 'currency',
+            currency: 'INR',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+        });
+        const formatCurrency = (value) => currencyFormatter.format(value);
+
+        function getSavedPlanState() {
+            const savedState = localStorage.getItem(PLAN_STORAGE_KEY);
+            return savedState ? JSON.parse(savedState) : {};
+        }
+
+        function savePlanState(state) {
+            localStorage.setItem(PLAN_STORAGE_KEY, JSON.stringify(state));
+        }
+
+        function handleCheckboxChange(event) {
+            if (!event.target.classList.contains('prepayment-checkbox')) return;
+            
+            const checkbox = event.target;
+            const month = checkbox.dataset.month;
+            const isChecked = checkbox.checked;
+            const row = checkbox.closest('tr');
+
+            const currentState = getSavedPlanState();
+            currentState[month] = isChecked;
+            savePlanState(currentState);
+
+            if (isChecked) {
+                row.classList.add('paid-off');
+            } else {
+                row.classList.remove('paid-off');
+            }
+        }
+
+        function createLoanCard(id) {
+            const card = document.createElement('div');
+            card.className = 'loan-card card';
+            card.id = `loan-card-${id}`;
+            card.innerHTML = `
+                <button class="remove-loan-btn" data-id="${id}" title="Remove this loan">&times;</button>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="col-span-2">
+                        <label class="block text-xs font-medium mb-1">Loan Name</label>
+                        <input type="text" class="input-field loan-name" placeholder="e.g., Home Loan" value="Loan ${id+1}">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium mb-1">Remaining Principal (₹)</label>
+                        <input type="number" class="input-field loan-principal" placeholder="5000000" value="5000000">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium mb-1">Rate (%)</label>
+                        <input type="number" step="0.01" class="input-field loan-rate" placeholder="8.5" value="8.5">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium mb-1">Tenure (Months)</label>
+                        <input type="number" class="input-field loan-tenure" placeholder="240" value="180">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium mb-1">Prepayment Priority</label>
+                        <input type="number" class="input-field loan-priority" placeholder="1" value="${id + 1}">
+                    </div>
+                </div>
+            `;
+            loanListContainer.appendChild(card);
+            card.querySelector('.remove-loan-btn').addEventListener('click', () => removeLoan(id));
+        }
+
+        function removeLoan(id) {
+            document.getElementById(`loan-card-${id}`).remove();
+        }
+
+function addLoan() {
+            createLoanCard(loanIdCounter++);
+        }
+
+        function calculateEMI(p, r, n) {
+            if (r === 0) return p / n;
+            return (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        }
+
+        function getLoansFromDOM() {
+            const loanCards = document.querySelectorAll('.loan-card');
+            const loans = [];
+            let isValid = true;
+            loanCards.forEach((card, index) => {
+                const name = card.querySelector('.loan-name').value || `Loan ${index + 1}`;
+                const principal = parseFloat(card.querySelector('.loan-principal').value);
+                const annualRate = parseFloat(card.querySelector('.loan-rate').value);
+                const tenureMonths = parseInt(card.querySelector('.loan-tenure').value);
+                const priority = parseInt(card.querySelector('.loan-priority').value);
+
+                if (isNaN(principal) || isNaN(annualRate) || isNaN(tenureMonths) || isNaN(priority) || principal <= 0 || annualRate <= 0 || tenureMonths <= 0 || priority <= 0) {
+                    isValid = false;
+                }
+                
+                const monthlyRate = annualRate / 12 / 100;
+                const emi = calculateEMI(principal, monthlyRate, tenureMonths);
+
+                loans.push({ 
+                    id: `loan-${index}`,
+                    name, 
+                    principal, 
+                    monthlyRate, 
+                    tenureMonths, 
+                    emi,
+                    balance: principal,
+                    totalInterest: 0,
+                    paidOff: false,
+                    priority: priority
+                });
+            });
+            if (!isValid) {
+                 // We are avoiding alert()
+                 console.error('Please fill all fields for all loans with valid numbers.');
+                 placeholder.textContent = 'Error: Please fill all fields for all loans with valid numbers.';
+                 placeholder.classList.remove('hidden');
+                 tableContainer.classList.add('hidden');
+                 return null;
+            }
+             if (loans.length === 0) {
+                // We are avoiding alert()
+                console.error('Please add at least one loan.');
+                placeholder.textContent = 'Error: Please add at least one loan.';
+                placeholder.classList.remove('hidden');
+                tableContainer.classList.add('hidden');
+                return null;
+            }
+            placeholder.textContent = 'Add your loans, enter an extra payment amount, and click "Calculate" to see your plan.'; // Reset placeholder
+            return loans;
+        }
+
+        function runSimulation(initialLoans, extraPayment = 0, strategy = 'custom') {
+            let loans = JSON.parse(JSON.stringify(initialLoans));
+            let month = 0;
+            let totalInterest = 0;
+            let snowball = extraPayment;
+            let ledger = [];
+            
+            while (loans.some(l => !l.paidOff)) {
+                month++;
+                let monthlyPayments = 0;
+                let monthlyInterest = 0;
+                let monthlyPrincipal = 0;
+                
+                // --- Strategy Sorting Logic ---
+                let activeLoans = loans.filter(l => !l.paidOff);
+
+                if (extraPayment > 0 && activeLoans.length > 0) {
+                    if (strategy === 'snowball') {
+                        // Sort by balance ascending (Lowest Balance First)
+                        activeLoans.sort((a, b) => a.balance - b.balance); 
+                    } else if (strategy === 'avalanche') {
+                        // Sort by monthly rate descending (Highest Rate First)
+                        activeLoans.sort((a, b) => b.monthlyRate - a.monthlyRate); 
+                    } else { // 'custom'
+                        // Sort by custom priority ascending
+                        activeLoans.sort((a, b) => a.priority - b.priority); 
+                    }
+                }
+                
+                const targetLoan = activeLoans[0];
+                // --- End Strategy Sorting Logic ---
+
+                // 1. Process minimum payments for all active loans
+                loans.filter(l => !l.paidOff).forEach(loan => {
+                    const interest = loan.balance * loan.monthlyRate;
+                    let principalFromEMI = loan.emi - interest;
+                    
+                    // Final payment adjustment
+                    if(loan.balance <= loan.emi) { 
+                        principalFromEMI = loan.balance - interest;
+                        if (principalFromEMI < 0) { // Interest is more than balance
+                             principalFromEMI = 0; // Pay off remaining balance with interest
+                        }
+                    }
+
+                    if (loan.balance < principalFromEMI) {
+                        principalFromEMI = loan.balance;
+                    }
+
+                    let paymentThisMonth = principalFromEMI + interest;
+                    
+                    if (loan.balance < paymentThisMonth) {
+                        paymentThisMonth = loan.balance + interest; // Should be loan.balance
+                        principalFromEMI = loan.balance - interest;
+                        if(principalFromEMI < 0) { // interest is greater than balance
+                             principalFromEMI = loan.balance; // Pay off balance
+                        }
+                        paymentThisMonth = principalFromEMI + interest;
+                        
+                        if(loan.balance < principalFromEMI) {
+                             principalFromEMI = loan.balance;
+                             paymentThisMonth = principalFromEMI + interest;
+                        }
+                        
+                        if (paymentThisMonth > loan.balance) {
+                           paymentThisMonth = loan.balance;
+                           principalFromEMI = paymentThisMonth - interest;
+                           if (principalFromEMI < 0) {
+                               interest = paymentThisMonth; // All payment is interest
+                               principalFromEMI = 0;
+                           }
+                        }
+                    }
+                    
+                    // Final check for payoff
+                    if (loan.balance <= (principalFromEMI + interest) && loan.balance > 0) {
+                         principalFromEMI = loan.balance;
+                         paymentThisMonth = principalFromEMI + interest;
+                    }
+
+
+                    loan.balance -= principalFromEMI;
+                    loan.totalInterest += interest;
+                    totalInterest += interest;
+                    monthlyPayments += paymentThisMonth;
+                    monthlyInterest += interest;
+                    monthlyPrincipal += principalFromEMI;
+                });
+                
+                // 2. Apply snowball payment to the highest priority loan
+                if (extraPayment > 0 && targetLoan && targetLoan.balance > 0) {
+                    let paymentToTarget = Math.min(snowball, targetLoan.balance);
+                    targetLoan.balance -= paymentToTarget;
+                    monthlyPayments += paymentToTarget;
+                    monthlyPrincipal += paymentToTarget;
+                }
+
+                // 3. Check for payoffs and roll the snowball
+                loans.forEach(loan => {
+                    if (!loan.paidOff && loan.balance <= 0.01) { 
+                        loan.paidOff = true;
+                        if(extraPayment > 0) snowball += loan.emi; 
+                        loan.balance = 0; 
+                    }
+                });
+                
+                // 4. Record ledger entry
+                ledger.push({
+                    month,
+                    monthlyPayments,
+                    monthlyInterest,
+                    monthlyPrincipal,
+                    totalDebt: loans.reduce((sum, l) => sum + Math.max(0, l.balance), 0)
+                });
+                 if(month > 1200) break; // Safety break
+            }
+            return { totalMonths: month, totalInterest, ledger };
+        }
+
+        function calculateSnowballPlan() {
+            const initialLoans = getLoansFromDOM();
+            if(!initialLoans) return;
+
+            const totalAmount = parseFloat(document.getElementById('totalMonthlyAmount').value) || 0;
+            const prepaymentPercent = parseFloat(document.getElementById('prepaymentPercentage').value);
+            const strategy = document.getElementById('strategySelect').value;
+            const investmentRate = parseFloat(document.getElementById('investmentRate').value) || 0;
+            
+            // Calculate split amounts based on slider
+            // prepaymentPercentage: 0 = all investment, 100 = all prepayment
+            const prepaymentAmount = totalAmount * (prepaymentPercent / 100);
+            const investmentAmount = totalAmount * (1 - prepaymentPercent / 100);
+            
+            // Baseline simulation (no extra payment, strategy doesn't matter)
+            const baseline = runSimulation(initialLoans, 0, 'custom'); 
+            
+            // Scenario 1: All amount goes to prepayment
+            const allPrepayment = runSimulation(initialLoans, totalAmount, strategy);
+            
+            // Scenario 2: All amount goes to investment (baseline with no prepayment)
+            const allInvestment = baseline; // No prepayment, just baseline
+            
+            // Scenario 3: Split between prepayment and investment
+            const splitScenario = runSimulation(initialLoans, prepaymentAmount, strategy);
+
+            currentLedger = splitScenario.ledger;
+
+            displaySummary(initialLoans, baseline, allPrepayment, allInvestment, splitScenario, totalAmount, prepaymentAmount, investmentAmount, investmentRate);
+            displayLedger(splitScenario.ledger);
+
+            placeholder.classList.add('hidden');
+            tableContainer.classList.remove('hidden');
+            summaryCard.classList.remove('hidden');
+            exportBtn.classList.remove('hidden');
+            
+            // Show investment comparison
+            document.getElementById('investmentComparison').style.display = 'block';
+        }
+
+function exportToCsv(ledger) {
+            if (!ledger || ledger.length === 0) {
+                console.error("No data to export.");
+                return;
+            }
+
+            const headers = ["Month", "Date", "Total Payment", "Interest Paid", "Principal Paid", "Remaining Debt"];
+            
+            const rows = ledger.map(row => [
+                row.month,
+                getMonthYear(row.month),
+                row.monthlyPayments.toFixed(2),
+                row.monthlyInterest.toFixed(2),
+                row.monthlyPrincipal.toFixed(2),
+                row.totalDebt.toFixed(2)
+            ].join(","));
+
+            let csvContent = headers.join(",") + "\n" + rows.join("\n");
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            if (link.download !== undefined) {
+                const url = URL.createObjectURL(blob);
+                link.setAttribute("href", url);
+                link.setAttribute("download", "loan_repayment_plan.csv");
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+
+        function displayLedger(ledger) {
+             tableContainer.innerHTML = '';
+            const thead = document.createElement('thead');
+            thead.innerHTML = `
+                <tr class="table-header sticky-header">
+                    <th class="table-cell text-left">Status</th>
+                    <th class="table-cell text-left">Month</th>
+                    <th class="table-cell">Total Payment</th>
+                    <th class="table-cell">Interest Paid</th>
+                    <th class="table-cell">Principal Paid</th>
+                    <th class="table-cell">Remaining Debt</th>
+                </tr>
+            `;
+            tableContainer.appendChild(thead);
+            
+            const tbody = document.createElement('tbody');
+            const savedState = getSavedPlanState();
+
+            ledger.forEach(row => {
+                const tr = document.createElement('tr');
+                const isPaid = savedState[row.month] === true;
+                if(isPaid) tr.classList.add('paid-off');
+
+                tr.innerHTML = `
+                    <td class="table-cell text-center">
+                        <input type="checkbox" class="prepayment-checkbox h-4 w-4 rounded border text-blue-600 focus:ring-blue-500" data-month="${row.month}" ${isPaid ? 'checked' : ''}>
+                    </td>
+                    <td class="table-cell text-left">${getMonthYear(row.month)}</td>
+                    <td class="table-cell">${formatCurrency(row.monthlyPayments)}</td>
+                    <td class="table-cell text-interest">${formatCurrency(row.monthlyInterest)}</td>
+                    <td class="table-cell text-principal">${formatCurrency(row.monthlyPrincipal)}</td>
+                    <td class="table-cell font-semibold">${formatCurrency(row.totalDebt)}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+            tableContainer.appendChild(tbody);
+            tableContainer.removeEventListener('change', handleCheckboxChange);
+            tableContainer.addEventListener('change', handleCheckboxChange);
+        }
+
+        function displaySummary(loans, baseline, allPrepayment, allInvestment, splitScenario, totalAmount, prepaymentAmt, investmentAmt, investmentRate) {
+            const totalEMI = loans.reduce((sum, l) => sum + l.emi, 0);
+            
+            // Display current plan with split allocation
+            const monthsReduced = baseline.totalMonths - splitScenario.totalMonths;
+            
+            document.getElementById('totalEMI').textContent = formatCurrency(totalEMI);
+            
+            document.getElementById('newEndDate').textContent = getMonthYear(splitScenario.totalMonths);
+            document.getElementById('newTotalInterest').textContent = formatCurrency(splitScenario.totalInterest);
+            document.getElementById('tenureReduced').textContent = `${Math.floor(monthsReduced / 12)} yrs ${monthsReduced % 12} mos`;
+
+            document.getElementById('originalEndDate').textContent = getMonthYear(baseline.totalMonths);
+            document.getElementById('originalTotalInterest').textContent = formatCurrency(baseline.totalInterest);
+
+            const interestSaved = baseline.totalInterest - splitScenario.totalInterest;
+            document.getElementById('totalSavings').textContent = formatCurrency(interestSaved);
+            
+            // Investment comparison calculation - only if total amount is provided
+            if (totalAmount > 0 && investmentRate > 0) {
+                const monthlyRate = investmentRate / 100 / 12;
+                
+                // Scenario 1: All Prepayment (100% to debt)
+                const scenario1InterestSaved = baseline.totalInterest - allPrepayment.totalInterest;
+                const scenario1Benefit = scenario1InterestSaved;
+                const scenario1Months = allPrepayment.totalMonths;
+                
+                // Scenario 2: All Investment (0% to debt, 100% to investment)
+                const scenario2Months = baseline.totalMonths; // No prepayment, so baseline duration
+                const futureValueAllInvest = totalAmount * (Math.pow(1 + monthlyRate, scenario2Months) - 1) / monthlyRate;
+                const totalInvestedScenario2 = totalAmount * scenario2Months;
+                const investmentGainsScenario2 = futureValueAllInvest - totalInvestedScenario2;
+                const scenario2Benefit = investmentGainsScenario2;
+                
+                // Scenario 3: Split (current allocation from slider)
+                const scenario3InterestSaved = baseline.totalInterest - splitScenario.totalInterest;
+                const scenario3Months = splitScenario.totalMonths;
+                const futureValueSplit = investmentAmt * (Math.pow(1 + monthlyRate, scenario3Months) - 1) / monthlyRate;
+                const totalInvestedScenario3 = investmentAmt * scenario3Months;
+                const investmentGainsScenario3 = futureValueSplit - totalInvestedScenario3;
+                const scenario3Benefit = scenario3InterestSaved + investmentGainsScenario3;
+                
+                // Display Scenario 1 (All Prepayment)
+                document.getElementById('prepaymentAmount').textContent = formatCurrency(totalAmount);
+                document.getElementById('interestSavedOnly').textContent = formatCurrency(scenario1InterestSaved);
+                
+                // Display Scenario 2 (All Investment)
+                document.getElementById('displayInvestmentAmount').textContent = formatCurrency(totalAmount);
+                document.getElementById('investmentPeriod').textContent = `${Math.floor(scenario2Months / 12)} yrs ${scenario2Months % 12} mos`;
+                document.getElementById('totalInvested').textContent = formatCurrency(totalInvestedScenario2);
+                document.getElementById('investmentValue').textContent = formatCurrency(futureValueAllInvest);
+                document.getElementById('investmentGains').textContent = formatCurrency(investmentGainsScenario2);
+                
+                // Display Scenario 3 (Split per slider)
+                document.getElementById('totalMonthlyOutflow').textContent = formatCurrency(totalAmount);
+                document.getElementById('combinedInterestSaved').textContent = formatCurrency(scenario3InterestSaved);
+                document.getElementById('combinedInvestmentGains').textContent = formatCurrency(investmentGainsScenario3);
+                document.getElementById('combinedNetBenefit').textContent = formatCurrency(scenario3Benefit);
+                
+                // Determine best strategy
+                const bestStrategyElement = document.getElementById('bestStrategy');
+                const recommendationElement = document.getElementById('recommendation');
+                
+                // Reset all scenario cards
+                document.getElementById('scenario1Card').style.border = '2px solid transparent';
+                document.getElementById('scenario2Card').style.border = '2px solid transparent';
+                document.getElementById('scenario3Card').style.border = '2px solid transparent';
+                document.getElementById('scenario1Badge').classList.add('hidden');
+                document.getElementById('scenario2Badge').classList.add('hidden');
+                document.getElementById('scenario3Badge').classList.add('hidden');
+                
+                let bestStrategy = 'Scenario 1: All Prepayment';
+                let maxBenefit = scenario1Benefit;
+                let bestScenarioNum = 1;
+                
+                if (scenario2Benefit > maxBenefit) {
+                    bestStrategy = 'Scenario 2: All Investment';
+                    maxBenefit = scenario2Benefit;
+                    bestScenarioNum = 2;
+                }
+                
+                if (scenario3Benefit > maxBenefit) {
+                    bestStrategy = 'Scenario 3: Split Strategy';
+                    maxBenefit = scenario3Benefit;
+                    bestScenarioNum = 3;
+                }
+                
+                // Highlight the best scenario card
+                const bestCard = document.getElementById(`scenario${bestScenarioNum}Card`);
+                bestCard.style.border = '3px solid var(--text-principal)';
+                bestCard.style.boxShadow = '0 0 15px rgba(76, 175, 80, 0.3)';
+                document.getElementById(`scenario${bestScenarioNum}Badge`).classList.remove('hidden');
+                
+                bestStrategyElement.textContent = bestStrategy;
+                bestStrategyElement.classList.add('text-principal');
+                bestStrategyElement.style.fontSize = '1.1rem';
+                bestStrategyElement.style.fontWeight = 'bold';
+                
+                // Provide recommendation
+                if (bestStrategy.includes('Scenario 3')) {
+                    recommendationElement.textContent = `🎯 Best Option: Split strategy (${Math.round((prepaymentAmt/totalAmount)*100)}% prepayment, ${Math.round((investmentAmt/totalAmount)*100)}% investment)! Net benefit: ${formatCurrency(maxBenefit)}`;
+                    recommendationElement.style.color = 'var(--text-principal)';
+                } else if (bestStrategy.includes('Scenario 1')) {
+                    recommendationElement.textContent = '💡 All Prepayment gives highest guaranteed return. Your loan interest rate is higher than expected investment returns. Net benefit: ' + formatCurrency(maxBenefit);
+                    recommendationElement.style.color = 'var(--text-principal)';
+                } else {
+                    recommendationElement.textContent = '📈 All Investment could yield more! Consider if you can manage minimum EMIs and want liquidity. Net benefit: ' + formatCurrency(maxBenefit);
+                    recommendationElement.style.color = 'var(--text-interest)';
+                }
+            }
+        }
+
+        function getMonthYear(monthNumber) {
+            if (monthNumber === 0) return 'N/A';
+            const today = new Date();
+            today.setDate(1); 
+            today.setMonth(today.getMonth() + monthNumber -1);
+            return `${today.toLocaleString('default', { month: 'short' })} '${today.getFullYear().toString().slice(-2)}`;
+        }
+        
+        // Initial setup
+        addLoanBtn.addEventListener('click', addLoan);
+        calculateBtn.addEventListener('click', calculateSnowballPlan);
+        exportBtn.addEventListener('click', () => exportToCsv(currentLedger));
+        addLoan();
+    });
+    </script>
+</body>
+</html>
