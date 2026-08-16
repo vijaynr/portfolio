@@ -41,7 +41,7 @@ const skills = [
 
 // Stats data
 const stats = [
-  { value: "7+", label: "YEARS EXPERIENCE" },
+  { value: "9+", label: "YEARS EXPERIENCE" },
   { value: "10+", label: "FEATURES DEVELOPED" },
 ];
 
@@ -60,12 +60,20 @@ const education = [
 // Experiences data
 const experiences = [
   {
+    title: "Lead Software Engineer",
+    company: "OpenText",
+    location: "Bengaluru",
+    period: "Jan 2026 - Present",
+    description:
+      "Implementing AI-driven workflows and optimizations for the development process. Designing frameworks that integrate AI agents into products with defined guardrails and auditing, while promoting AI adoption through tailored, thoroughly evaluated coding-agent skills.",
+  },
+  {
     title: "Senior Software Engineer",
     company: "OpenText",
     location: "Bengaluru",
-    period: "Mar 2022 - Present",
+    period: "Mar 2022 - Jan 2026",
     description:
-      "Defined and developed feature backlogs as Product Owner. Led design and delivery of key features across two enterprise products, Filr and Vibe, as Technical Lead. Performed security audits and resolved vulnerabilities in accordance with the Service Level Agreements. Optimized the build process of Filr, reducing the build time by 70%. Established coding standards within the team, enhancing code quality. Refactored and modernized the legacy codebases with updated dependencies and best practices, improving non-functional performance by 50%.",
+      "Defined and developed feature backlogs as Product Owner. Led design and delivery of key features across two enterprise products, Filr and Vibe, as Technical Lead. Performed security audits and resolved vulnerabilities in accordance with the Service Level Agreements. Optimized the build process of Filr, reducing the build time by 70%. Established coding standards within the team, enhancing code quality. Refactored and modernized the legacy codebases with updated dependencies and best practices, improving non-functional performance by 50%. Managed 12 developers through a legacy admin-console migration from GWT and Portlets to Angular and TypeScript.",
   },
   {
     title: "Software Engineer",
