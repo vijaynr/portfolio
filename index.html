@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Portfolio of Vijayasankar Ravindran, a full-stack developer and everything tinkerer.">
+  <meta name="description" content="Portfolio of Vijayasankar Ravindran, Lead Software Engineer building enterprise applications with Java, Spring, Angular and AI-assisted development workflows.">
   <meta name="theme-color" content="#11110f">
   <title>Vijayasankar Ravindran — Software developer &amp; tinkerer</title>
   <link rel="icon" href="favicon.ico">
@@ -23,7 +23,8 @@
       --accent-ink: #11110f;
       --coral: #ff6f59;
       --blue: #78b7ff;
-      --max: 1240px;
+      --max: 70rem;
+      --gutter: clamp(1.25rem, 5vw, 4rem);
     }
 
     html[data-theme="light"] {
@@ -74,7 +75,7 @@
     button { font: inherit; }
 
     .shell {
-      width: min(calc(100% - 2rem), var(--max));
+      width: min(calc(100% - var(--gutter) * 2), var(--max));
       margin-inline: auto;
     }
 
@@ -336,7 +337,6 @@
       transition: transform .25s ease, background .25s ease, border-color .25s ease;
     }
 
-    .project-card:nth-child(n+3) { min-height: 315px; }
     .project-card::after {
       position: absolute;
       right: -2rem;
@@ -352,34 +352,6 @@
 
     .project-card:hover { z-index: 2; border-color: var(--accent); background: var(--surface-raised); transform: translateY(-8px) rotate(-.5deg); }
     .project-card:hover::after { color: color-mix(in srgb, var(--accent) 13%, transparent); transform: translate(-.5rem, -.5rem); }
-    .project-card.featured { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
-    .project-card.featured .project-meta, .project-card.featured p { color: color-mix(in srgb, var(--accent-ink) 72%, transparent); }
-    .project-card.featured::after { color: color-mix(in srgb, var(--accent-ink) 10%, transparent); }
-    .project-card.peerview {
-      border-color: color-mix(in srgb, var(--blue) 55%, var(--line));
-      background:
-        linear-gradient(color-mix(in srgb, var(--blue) 7%, transparent) 1px, transparent 1px),
-        linear-gradient(90deg, color-mix(in srgb, var(--blue) 7%, transparent) 1px, transparent 1px),
-        var(--surface);
-      background-size: 24px 24px;
-    }
-    .project-card.peerview:hover { border-color: var(--blue); }
-    .project-command {
-      position: absolute;
-      top: 5.25rem;
-      right: 2.5rem;
-      z-index: 1;
-      padding: .7rem .85rem;
-      border: 1px solid var(--ink);
-      background: var(--blue);
-      color: #11110f;
-      box-shadow: 5px 5px 0 var(--ink);
-      font: 500 .68rem/1 "DM Mono", monospace;
-      transform: rotate(3deg);
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-    .project-command i { color: color-mix(in srgb, #11110f 55%, transparent); font-style: normal; }
-    .project-card:hover .project-command { box-shadow: 2px 2px 0 var(--ink); transform: rotate(0) translate(3px, 3px); }
     .project-meta { position: relative; z-index: 1; display: flex; justify-content: space-between; gap: 1rem; color: var(--muted); font-size: .64rem; }
     .project-card h3 { position: relative; z-index: 1; max-width: 480px; margin: auto 0 1rem; font-size: clamp(1.7rem, 3.2vw, 3.2rem); line-height: .98; letter-spacing: -.045em; }
     .project-card p { position: relative; z-index: 1; max-width: 520px; margin: 0; color: var(--muted); font-size: .88rem; line-height: 1.65; }
@@ -416,20 +388,27 @@
     .footer h2 em { color: var(--accent); font-style: normal; }
     .resume-link {
       display: inline-flex;
-      width: 150px;
-      height: 150px;
+      min-height: 80px;
+      min-width: 250px;
+      padding: 1.1rem 1.4rem;
+      gap: 2rem;
       align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: var(--coral);
-      color: #11110f;
-      font: 500 .72rem/1.35 "DM Mono", monospace;
-      text-align: center;
+      justify-content: space-between;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--ink);
+      font: 500 1.1rem/1.3 "Syne", sans-serif;
+      text-align: left;
       text-decoration: none;
-      text-transform: uppercase;
-      transition: transform .25s ease, box-shadow .25s ease;
+      transition: background-color .2s ease, border-color .2s ease;
     }
-    .resume-link:hover { transform: rotate(8deg) scale(1.06); box-shadow: 0 0 0 8px color-mix(in srgb, var(--coral) 20%, transparent); }
+    .resume-copy { display: grid; gap: .35rem; }
+    .resume-detail { color: var(--muted); font: 400 .75rem/1.4 "DM Mono", monospace; }
+    .resume-link svg { flex: none; width: 22px; height: 22px; transition: transform .2s ease; }
+    .resume-link:hover { background: var(--surface-raised); border-color: var(--ink); }
+    .resume-link:hover svg { transform: translate(3px, -3px); }
+    .resume-link:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
     .footer-bottom { display: flex; justify-content: space-between; gap: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); }
     .footer-meta { font-size: .62rem; }
     .back-top { color: var(--ink); text-decoration: none; }
@@ -456,16 +435,14 @@
     }
 
     @media (max-width: 580px) {
-      .shell { width: min(calc(100% - 1.25rem), var(--max)); }
       .header-inner { min-height: 64px; }
       h1 { font-size: clamp(3.15rem, 17vw, 5.4rem); }
       h1 .spark { right: .12em; bottom: -.58em; }
       .hero { padding-top: 4rem; }
       .experience-item { grid-template-columns: 1fr; gap: 1rem; }
       .project-card, .project-card:nth-child(n) { grid-column: 1 / -1; min-height: 300px; }
-      .project-command { top: 4.75rem; right: 1.5rem; }
       .footer-callout { grid-template-columns: 1fr; }
-      .resume-link { width: 126px; height: 126px; margin-left: auto; }
+      .resume-link { width: 100%; min-width: 0; }
       .footer-bottom { align-items: flex-end; }
     }
 
@@ -496,7 +473,7 @@
           <span class="line">I build software</span>
           <span class="line outline">that sticks around<span class="spark">✦</span></span>
         </h1>
-        <p class="hero-copy">I’m Vijayasankar Ravindran—a full-stack developer with 9+ years in enterprise applications, working across Java, Spring Framework and Angular. Clean code, maintainable architecture, and a healthy appetite for tinkering.</p>
+        <p class="hero-copy">I’m Vijayasankar Ravindran—a Lead Software Engineer with 9+ years building enterprise applications with Java, Spring, Angular and TypeScript. I own architecture across products and lead technology modernization, secure authentication design and AI-assisted development workflows.</p>
         <a class="scroll-note" href="#experience">A short scroll through the evidence <span aria-hidden="true">↓</span></a>
       </div>
       <aside class="hero-aside" aria-label="Developer profile card">
@@ -514,8 +491,8 @@
 
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
-        <span>Java</span><span>Spring Framework</span><span>Angular</span><span>J2EE</span><span>Web Technologies</span>
-        <span>Java</span><span>Spring Framework</span><span>Angular</span><span>J2EE</span><span>Web Technologies</span>
+        <span>Java</span><span>Spring Framework</span><span>Angular</span><span>TypeScript</span><span>Spring Security</span>
+        <span>Java</span><span>Spring Framework</span><span>Angular</span><span>TypeScript</span><span>Spring Security</span>
       </div>
     </div>
 
@@ -532,15 +509,15 @@
             <div class="role">
               <h3>Lead Software Engineer</h3>
               <div class="company">OpenText</div>
-              <p>Implementing AI-driven workflows and optimizations for the development process. Designing frameworks that integrate AI agents into products with defined guardrails and auditing, while promoting AI adoption through tailored, thoroughly evaluated coding-agent skills.</p>
+              <p>Own architecture and design for three products, and lead technology stack and UI modernization across three teams, with UI modernization completed for one product. Introduced an AI-assisted development lifecycle using organization-approved internal tools, saving the current team an estimated 30–40% of development time. Develop proofs of concept, refine technical backlogs, and build agentic code review and development workflows with reusable coding-agent skills and evaluation practices shared across teams.</p>
             </div>
           </article>
           <article class="experience-item reveal">
-            <div class="period">Mar 2022 — Jan 2026<br>Bengaluru</div>
+            <div class="period">Mar 2022 — Dec 2025<br>Bengaluru</div>
             <div class="role">
               <h3>Senior Software Engineer</h3>
               <div class="company">OpenText</div>
-              <p>Defined and developed feature backlogs as Product Owner. Led design and delivery across Filr and Vibe as Technical Lead, performed security audits, and resolved vulnerabilities within SLAs. Optimized Filr’s build process by 70%, established coding standards, and modernized legacy codebases—improving non-functional performance by 50%. Managed 12 developers through a legacy admin-console migration from GWT and Portlets to Angular and TypeScript.</p>
+              <p>Led a 12-developer team modernizing an enterprise administration console from GWT and Portlets to Angular and TypeScript. Reduced Filr’s build time by 70%, shortening developer feedback cycles. Owned feature backlogs and collaborated with stakeholders as Product Owner for Filr and Vibe. Conducted security audits, remediated vulnerabilities, and introduced engineering standards for maintainability.</p>
             </div>
           </article>
           <article class="experience-item reveal">
@@ -556,13 +533,13 @@
             <div class="role">
               <h3>Associate Software Engineer</h3>
               <div class="company">Micro Focus</div>
-              <p>Worked with customers on critical issues and enhancements, attaining a 100% incident closure rate. Packaged the Filr Linux Desktop Client for SUSE and Ubuntu, and contributed to macOS and Windows clients for Cloud Integrated Storage.</p>
+              <p>Resolved customer-reported incidents and delivered product enhancements. Packaged the Filr Linux Desktop Client for SUSE and Ubuntu, and contributed to macOS and Windows clients for Cloud Integrated Storage.</p>
             </div>
           </article>
           <article class="experience-item reveal">
             <div class="period">Jan 2017 — Jun 2017<br>Bengaluru</div>
             <div class="role">
-              <h3>Internship</h3>
+              <h3>Engineering Intern</h3>
               <div class="company">Micro Focus</div>
               <p>Created proofs of concept for Filr, an Enterprise File Sync and Share solution. Developed a Linux client using FUSE and Python, and designed a feedback-based recommendation system.</p>
             </div>
@@ -579,14 +556,13 @@
         </div>
 
         <div class="project-grid">
-          <a class="project-card featured reveal" href="html/projects/debt_payoff_calc.html" target="_blank" rel="noopener" data-number="01">
-            <div class="project-meta"><span>Personal project</span><span class="arrow">↗</span></div>
-            <h3>Debt Management Console</h3>
-            <p>A financial tool to calculate and visualize debt payoff strategies using different payment methods.</p>
-          </a>
-          <a class="project-card peerview reveal" href="https://github.com/vijaynr/peerview" target="_blank" rel="noopener" data-number="02">
+          <article class="project-card reveal" data-number="01">
+            <div class="project-meta"><span>OpenText · Java · Spring · Angular</span></div>
+            <h3>Single Sign On</h3>
+            <p>Integrated Microsoft Entra ID to support hybrid users, with a provider-independent design that supports other OpenID Connect (OIDC) providers.</p>
+          </article>
+          <a class="project-card reveal" href="https://github.com/vijaynr/peerview" target="_blank" rel="noopener" data-number="02">
             <div class="project-meta"><span>Open source · Bun · TypeScript · LLMs</span><span class="arrow">↗</span></div>
-            <span class="project-command" aria-hidden="true">pv review <i>↵</i></span>
             <h3>PeerView</h3>
             <p>A command-line tool for LLM-powered GitHub pull request and GitLab merge request workflows: review, summarize, chat and create.</p>
           </a>
@@ -625,14 +601,33 @@
             <span class="skill">Java</span>
             <span class="skill">Spring Framework</span>
             <span class="skill">Angular</span>
-            <span class="skill">J2EE</span>
-            <span class="skill">Web Technologies</span>
+            <span class="skill">TypeScript</span>
+            <span class="skill">JavaScript</span>
+            <span class="skill">Python</span>
+            <span class="skill">Spring Security</span>
+            <span class="skill">REST APIs</span>
+            <span class="skill">Hibernate / JPA</span>
+            <span class="skill">OAuth 2.0</span>
+            <span class="skill">Multi-factor authentication</span>
+            <span class="skill">Backend for frontend (BFF)</span>
+            <span class="skill">PostgreSQL</span>
+            <span class="skill">SQL Server</span>
+            <span class="skill">MariaDB</span>
+            <span class="skill">Git</span>
+            <span class="skill">SVN</span>
+            <span class="skill">Docker</span>
+            <span class="skill">Testcontainers</span>
+            <span class="skill">AI agents</span>
+            <span class="skill">LangGraph</span>
+            <span class="skill">Agent orchestration</span>
+            <span class="skill">Coding-agent workflows</span>
           </div>
           <article class="education-card reveal">
             <div class="period">2013 — 2017 · Coimbatore</div>
             <h3>B.E. Electronics and Communication</h3>
             <h4>PSG College of Technology</h4>
-            <p>Graduated with honors, with a focus on microprocessors and embedded programming.</p>
+            <p>Micro Focus Hack Week — Special Mention (2021). Focus Toastmasters — Most Improved Speaker (2019).</p>
+            <p>Product Owner Fundamentals — IIBA Endorsed (Udemy, Feb 2025).</p>
           </article>
         </div>
       </div>
@@ -643,7 +638,10 @@
     <div class="shell">
       <div class="footer-callout reveal">
         <h2>There’s more in the <em>fine print.</em></h2>
-        <a class="resume-link" href="docs/resume.pdf" target="_blank" rel="noopener">Open résumé<br>↗</a>
+        <a class="resume-link" href="docs/resume.pdf" target="_blank" rel="noopener">
+          <span class="resume-copy"><span>Open résumé</span><span class="resume-detail">PDF · Opens in a new tab</span></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg>
+        </a>
       </div>
       <div class="footer-bottom">
         <div class="footer-meta">© 2024 Vijayasankar Ravindran</div>
