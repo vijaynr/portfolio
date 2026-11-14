@@ -80,7 +80,6 @@
     }
 
     .mono,
-    .eyebrow,
     .nav a,
     .section-index,
     .company,
@@ -170,98 +169,38 @@
 
     .theme-toggle:hover { border-color: var(--accent); transform: rotate(15deg); }
 
+    .hero-cover { position: relative; overflow: hidden; color: var(--ink); }
     .hero {
-      min-height: min(780px, calc(100svh - 76px));
       display: grid;
-      grid-template-columns: minmax(0, 1.6fr) minmax(230px, .55fr);
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
       align-items: center;
-      gap: clamp(3rem, 8vw, 8rem);
-      padding: clamp(5rem, 12vh, 9rem) 0;
+      gap: clamp(2rem, 5vw, 5rem);
+      min-height: 770px;
+      padding-block: 4.5rem 5rem;
     }
-
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: .65rem;
-      margin: 0 0 1.5rem;
-      color: var(--muted);
-      font-size: .76rem;
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 15%, transparent);
-      animation: pulse 2.4s ease-in-out infinite;
-    }
-
-    h1 {
-      max-width: 950px;
-      margin: 0;
-      font-size: clamp(3.4rem, 8.4vw, 8.3rem);
-      font-weight: 600;
-      line-height: .88;
-      letter-spacing: -.075em;
-    }
-
-    h1 .line { position: relative; display: block; width: fit-content; }
-    h1 .outline { color: transparent; -webkit-text-stroke: 1px var(--ink); }
-    h1 .spark {
-      position: absolute;
-      right: -.72em;
-      bottom: .02em;
-      display: inline-block;
-      color: var(--accent);
-      font-size: .56em;
-      -webkit-text-stroke: 0;
-      animation: twirl 10s linear infinite;
-    }
-
-    .hero-copy {
-      max-width: 650px;
-      margin: 2rem 0 0;
-      color: var(--muted);
-      font-size: clamp(1rem, 1.5vw, 1.22rem);
-      line-height: 1.7;
-    }
-
-    .hero-aside {
-      align-self: end;
-      margin-bottom: 3rem;
-    }
-
-    .terminal-card {
-      position: relative;
-      padding: 1rem;
-      border: 1px solid var(--line);
-      background: var(--surface);
-      box-shadow: 10px 10px 0 var(--accent);
-      transform: rotate(2deg);
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
-
-    .terminal-card:hover { transform: rotate(0) translate(-3px, -3px); box-shadow: 15px 15px 0 var(--accent); }
-    .terminal-top { display: flex; gap: 6px; padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
-    .terminal-top span { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); }
-    .terminal-body { padding: 1.4rem .4rem .6rem; font: 400 .74rem/1.8 "DM Mono", monospace; color: var(--muted); }
-    .terminal-body strong { color: var(--accent); font-weight: 400; }
-    .cursor { display: inline-block; width: .55em; height: 1em; vertical-align: -.12em; background: var(--accent); animation: blink 1s steps(1) infinite; }
-
-    .scroll-note {
-      display: inline-flex;
-      margin-top: 4rem;
-      align-items: center;
-      gap: .75rem;
-      color: var(--muted);
-      font: 400 .68rem/1 "DM Mono", monospace;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: .09em;
-    }
-
-    .scroll-note span { font-size: 1.2rem; animation: bob 1.6s ease-in-out infinite; }
+    .hero-content { position: relative; z-index: 2; }
+    h1 { margin: 0; font-size: clamp(3.3rem, 5.5vw, 5.2rem); font-weight: 600; line-height: .98; letter-spacing: -.04em; }
+    h1 .line { display: block; }
+    h1 .hero-title-end { color: var(--muted); }
+    .hero-role { margin: 1.75rem 0 0; color: var(--ink); font-size: .95rem; line-height: 1.6; }
+    .hero-copy { max-width: 570px; margin: 1rem 0 0; color: var(--muted); font-size: 1rem; line-height: 1.75; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 2rem; }
+    .hero-action { display: inline-flex; justify-content: center; align-items: center; gap: .85rem; min-height: 50px; padding: .9rem 1.2rem; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); font-size: .95rem; font-weight: 600; text-decoration: none; transition: background-color .2s ease, border-color .2s ease; }
+    .hero-action-primary { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+    .hero-action:hover { background: var(--surface-raised); border-color: var(--ink); }
+    .hero-action-primary:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .hero-action:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
+    .hero-action svg { width: 18px; height: 18px; }
+    .hero-art { position: relative; isolation: isolate; height: 570px; margin: 0; }
+    .hero-art::before { content: ""; position: absolute; inset: 4rem .8rem 2.5rem 1rem; background: #b8ceda; transform: rotate(-4deg); }
+    .hero-art::after { content: ""; position: absolute; z-index: -1; inset: 5rem -.1rem 1.5rem 1.2rem; border: 1px solid var(--ink); transform: rotate(3deg); }
+    .portrait-monogram { position: absolute; top: 5rem; left: .5rem; color: #466479; opacity: .3; font-size: clamp(6rem, 9vw, 8.5rem); font-weight: 800; line-height: 1; letter-spacing: -.04em; transform: rotate(-4deg); user-select: none; }
+    .portrait-crop { position: absolute; inset: 0 0 2.5rem; overflow: hidden; }
+    .hero-portrait { position: absolute; bottom: 0; right: -25%; width: 150%; height: 100%; object-fit: contain; object-position: center bottom; transform: translateY(6%); }
+    .portrait-tag { position: absolute; z-index: 2; top: .75rem; right: .75rem; padding: .7rem .9rem; background: #dfff00; color: #11110f; font-size: .85rem; font-weight: 600; transform: rotate(6deg); }
+    .portrait-caption { position: absolute; z-index: 3; bottom: .75rem; left: .25rem; right: .25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.2rem; background: #f3aa95; color: #11110f; transform: rotate(-2deg); }
+    .portrait-caption strong { font-size: 1.05rem; font-weight: 600; }
+    .portrait-caption span { font: 400 .75rem/1.4 "DM Mono", monospace; }
 
     .marquee {
       overflow: hidden;
@@ -286,13 +225,8 @@
 
     .section { padding: clamp(6rem, 11vw, 10rem) 0; border-bottom: 1px solid var(--line); }
 
-    .section-heading {
-      display: grid;
-      grid-template-columns: minmax(150px, .42fr) 1fr;
-      gap: 2rem;
-      align-items: start;
-      margin-bottom: clamp(3rem, 7vw, 6rem);
-    }
+    .section-heading { margin-bottom: clamp(3rem, 7vw, 5rem); }
+    .section-description { max-width: 680px; margin: 1.25rem 0 0; color: var(--muted); font-size: clamp(1rem, 2vw, 1.25rem); line-height: 1.6; }
 
     .section-kicker { display: flex; gap: 1rem; align-items: center; color: var(--muted); }
     .section-index { color: var(--accent); font-size: .68rem; }
@@ -408,10 +342,24 @@
     .education-card p { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.7; }
     .education-card p + p { margin-top: .85rem; }
 
-    .footer { padding: clamp(5rem, 9vw, 8rem) 0 2rem; }
-    .footer-callout { display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: end; padding-bottom: clamp(4rem, 8vw, 7rem); }
-    .footer h2 { max-width: 760px; }
-    .footer h2 em { color: var(--accent); font-style: normal; }
+    #contact { padding: clamp(4rem, 8vw, 7rem) 0 3rem; border-bottom: 0; background: var(--surface); }
+    .contact-layout { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
+    .contact-heading { display: block; }
+    .contact-heading .section-description { max-width: 330px; margin-top: 1.25rem; }
+    .contact-heading .resume-link { margin-top: 2rem; background: var(--bg); }
+    .contact-details { margin: 0; font-style: normal; }
+    .contact-link { display: grid; grid-template-columns: minmax(0, 1fr) 36px; align-items: center; gap: 1rem; padding: 1.4rem 0; border-top: 1px solid var(--line); text-decoration: none; }
+    .contact-link:first-child { padding-top: 0; border-top: 0; }
+    .contact-copy { display: grid; gap: .45rem; }
+    .contact-label { color: var(--muted); font-size: .85rem; }
+    .contact-value { color: var(--ink); font-size: clamp(1rem, 1.6vw, 1.25rem); line-height: 1.5; overflow-wrap: anywhere; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: .25em; transition: text-decoration-color .2s ease; }
+    .contact-link:first-child .contact-value { font-weight: 600; }
+    .contact-icon { display: grid; width: 36px; height: 36px; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); transition: background-color .2s ease, color .2s ease; }
+    .contact-icon svg { width: 18px; height: 18px; }
+    .contact-link:hover .contact-value { text-decoration-color: currentColor; }
+    .contact-link:hover .contact-icon { background: var(--ink); color: var(--bg); }
+    .contact-link:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
+    .footer { padding: 0 0 1.5rem; background: var(--surface); }
     .resume-link {
       display: inline-flex;
       min-height: 80px;
@@ -435,42 +383,53 @@
     .resume-link:hover { background: var(--surface-raised); border-color: var(--ink); }
     .resume-link:hover svg { transform: translate(3px, -3px); }
     .resume-link:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
-    .footer-bottom { display: flex; justify-content: space-between; gap: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); }
-    .footer-meta { font-size: .62rem; }
-    .back-top { color: var(--ink); text-decoration: none; }
-    .back-top:hover { color: var(--accent); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); }
+    .footer-meta { font: 400 .85rem/1.5 "Syne", sans-serif; text-transform: none; letter-spacing: 0; }
+    .back-top { display: inline-flex; align-items: center; gap: .6rem; min-height: 44px; color: var(--ink); text-decoration: none; }
+    .back-top svg { width: 18px; height: 18px; }
+    .back-top:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+    .back-top:hover { text-decoration: underline; text-underline-offset: .25em; }
 
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
     .reveal.visible { opacity: 1; transform: none; }
 
-    @keyframes pulse { 50% { box-shadow: 0 0 0 9px color-mix(in srgb, var(--accent) 0%, transparent); } }
-    @keyframes blink { 50% { opacity: 0; } }
-    @keyframes twirl { to { transform: rotate(360deg); } }
-    @keyframes bob { 50% { transform: translateY(5px); } }
     @keyframes marquee { to { transform: translateX(-50%); } }
 
     @media (max-width: 800px) {
-      .nav a { display: none; }
-      .hero { min-height: auto; grid-template-columns: 1fr; gap: 2rem; padding: 5rem 0 6rem; }
-      .hero-aside { width: min(78%, 320px); margin: 0 0 0 auto; }
-      .scroll-note { margin-top: 2.5rem; }
+      .hero { min-height: 0; grid-template-columns: 1fr; gap: 3rem; padding-block: 3.5rem 4rem; }
+      .hero-content { max-width: 640px; }
+      .hero-copy { max-width: 600px; }
+      .hero-art { width: min(100%, 460px); height: 530px; justify-self: center; }
       .section-heading { grid-template-columns: 1fr; gap: 1.5rem; }
       .experience-list { margin-left: 0; }
       .project-card, .project-card:nth-child(n) { grid-column: span 6; }
       .toolbox { grid-template-columns: 1fr; }
       .education-card { transform: none; }
+      .contact-layout { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 580px) {
-      .header-inner { min-height: 64px; }
-      h1 { font-size: clamp(3.15rem, 17vw, 5.4rem); }
-      h1 .spark { right: .12em; bottom: -.58em; }
-      .hero { padding-top: 4rem; }
+      html { scroll-padding-top: 8rem; }
+      .header-inner { min-height: 108px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .25rem .5rem; padding-block: .75rem; }
+      .brand { grid-column: 1; grid-row: 1; }
+      .nav { display: contents; }
+      .nav a { display: flex; align-items: center; grid-row: 2; min-height: 44px; font: 500 .75rem/1.4 "Syne", sans-serif; text-transform: none; letter-spacing: 0; }
+      .theme-toggle { grid-column: 4; grid-row: 1; justify-self: end; }
+      h1 { font-size: clamp(2.6rem, 11vw, 3.8rem); }
+      .hero-role { font-size: .85rem; }
+      .hero-copy { font-size: 1rem; }
+      .hero-action { flex: 1 1 auto; }
+      .hero-art { height: 440px; }
+      .portrait-caption { padding: 1rem; }
+      .portrait-caption strong { font-size: .95rem; }
+      .portrait-caption span { font-size: .7rem; }
+      .portrait-monogram { font-size: clamp(4.5rem, 23vw, 6rem); }
+      .portrait-tag { font-size: .8rem; right: 0; }
       .experience-item { grid-template-columns: 1fr; gap: 1rem; }
       .project-card, .project-card:nth-child(n) { grid-column: 1 / -1; min-height: 300px; }
-      .footer-callout { grid-template-columns: 1fr; }
+      .contact-layout { grid-template-columns: 1fr; }
       .resume-link { width: 100%; min-width: 0; }
-      .footer-bottom { align-items: flex-end; }
+      .footer-bottom { align-items: center; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -482,38 +441,36 @@
 <body id="top">
   <header class="site-header" aria-label="Site header">
     <div class="shell header-inner">
-      <a class="brand" href="#top" aria-label="Vijayasankar Ravindran, back to top">VR</a>
+      <a class="brand" href="#top" aria-label="Vijayasankar Ravindran, back to top">VNR</a>
       <nav class="nav" aria-label="Primary navigation">
         <a href="#experience">Experience</a>
         <a href="#work">Work</a>
-        <a href="#toolbox">Toolbox</a>
+        <a href="#background">Background</a>
+        <a href="#contact">Contact</a>
         <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Change the lighting">☼</button>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="shell hero" aria-labelledby="hero-title">
-      <div>
-        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Lead Software Engineer · Bengaluru</p>
-        <h1 id="hero-title">
-          <span class="line">I build software</span>
-          <span class="line outline">that sticks around<span class="spark">✦</span></span>
-        </h1>
-        <p class="hero-copy">I’m Vijayasankar Ravindran—a Lead Software Engineer with 9+ years building enterprise applications with Java, Spring, Angular and TypeScript. I own architecture across products and lead technology modernization, secure authentication design and AI-assisted development workflows.</p>
-        <a class="scroll-note" href="#experience">A short scroll through the evidence <span aria-hidden="true">↓</span></a>
-      </div>
-      <aside class="hero-aside" aria-label="Developer profile card">
-        <div class="terminal-card">
-          <div class="terminal-top" aria-hidden="true"><span></span><span></span><span></span></div>
-          <div class="terminal-body">
-            <div><strong>vijay@portfolio</strong> ~ % whoami</div>
-            <div>lead software engineer</div>
-            <div>everything tinkerer</div>
-            <div>builder of things that last <span class="cursor" aria-hidden="true"></span></div>
+    <section class="hero-cover" aria-labelledby="hero-title">
+      <div class="shell hero">
+        <div class="hero-content">
+          <h1 id="hero-title"><span class="line">I build software</span><span class="line hero-title-end">that sticks around.</span></h1>
+          <p class="hero-role">Lead Software Engineer · Bengaluru</p>
+          <p class="hero-copy">I’m Vijayasankar Ravindran—a Lead Software Engineer with 9+ years building enterprise applications with Java, Spring, Angular and TypeScript. I own architecture across products and lead technology modernization, secure authentication design and AI-assisted development workflows.</p>
+          <div class="hero-actions">
+            <a class="hero-action hero-action-primary" href="#work">Explore my work <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+            <a class="hero-action" href="docs/resume.pdf" target="_blank" rel="noopener" aria-label="Open résumé PDF in a new tab">Open résumé <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a>
           </div>
         </div>
-      </aside>
+        <figure class="hero-art">
+          <span class="portrait-monogram" aria-hidden="true">VNR</span>
+          <div class="portrait-crop"><img class="hero-portrait" src="assets/images/vijayasankar-portrait.webp" alt="Vijayasankar Ravindran wearing a dark navy shirt" width="1312" height="1199" fetchpriority="high"></div>
+          <span class="portrait-tag">Everything tinkerer.</span>
+          <figcaption class="portrait-caption"><strong>Vijayasankar Ravindran</strong><span>Bengaluru,<br>India</span></figcaption>
+        </figure>
+      </div>
     </section>
 
     <div class="marquee" aria-hidden="true">
@@ -526,8 +483,8 @@
     <section class="section" id="experience" aria-labelledby="experience-title">
       <div class="shell">
         <div class="section-heading reveal">
-          <div class="section-kicker"><span class="section-index">01</span><span>Experience log</span></div>
-          <h2 id="experience-title">From prototypes to enterprise products.</h2>
+          <h2 id="experience-title">Experience</h2>
+          <p class="section-description">From prototypes to enterprise products.</p>
         </div>
 
         <div class="experience-list">
@@ -578,8 +535,8 @@
     <section class="section" id="work" aria-labelledby="work-title">
       <div class="shell">
         <div class="section-heading reveal">
-          <div class="section-kicker"><span class="section-index">02</span><span>Selected artifacts</span></div>
-          <h2 id="work-title">Useful things, built for real-world friction.</h2>
+          <h2 id="work-title">Work</h2>
+          <p class="section-description">Useful things, built for real-world friction.</p>
         </div>
 
         <div class="project-grid">
@@ -617,11 +574,11 @@
       </div>
     </section>
 
-    <section class="section" id="toolbox" aria-labelledby="toolbox-title">
+    <section class="section" id="background" aria-labelledby="toolbox-title">
       <div class="shell">
         <div class="section-heading reveal">
-          <div class="section-kicker"><span class="section-index">03</span><span>Toolbox + roots</span></div>
-          <h2 id="toolbox-title">Enterprise foundations. Tinkerer energy.</h2>
+          <h2 id="toolbox-title">Background</h2>
+          <p class="section-description">Skills, education and the foundations behind the work.</p>
         </div>
         <div class="toolbox">
           <div class="skill-cloud reveal" aria-label="Skills and technologies">
@@ -662,20 +619,30 @@
         </div>
       </div>
     </section>
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="shell contact-layout">
+        <div class="contact-heading reveal">
+          <div><h2 id="contact-title">Contact</h2><p class="section-description">Let’s build something that sticks around.</p></div>
+          <a class="resume-link" href="docs/resume.pdf" target="_blank" rel="noopener">
+            <span class="resume-copy"><span>Open résumé</span><span class="resume-detail">PDF · Opens in a new tab</span></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg>
+          </a>
+        </div>
+        <address class="contact-details reveal">
+          <a class="contact-link" href="mailto:vijayn.ravindran@gmail.com"><span class="contact-copy"><span class="contact-label">Email</span><span class="contact-value">vijayn.ravindran<wbr>@gmail.com</span></span><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M6 6h12v12"/></svg></span></a>
+          <a class="contact-link" href="tel:+919789635226"><span class="contact-copy"><span class="contact-label">Phone</span><span class="contact-value">+91 97896 35226</span></span><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M6 6h12v12"/></svg></span></a>
+          <a class="contact-link" href="https://www.linkedin.com/in/vijayasankarnr" target="_blank" rel="noopener" aria-label="LinkedIn: vijayasankarnr (opens in a new tab)"><span class="contact-copy"><span class="contact-label">LinkedIn</span><span class="contact-value">vijayasankarnr</span></span><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M6 6h12v12"/></svg></span></a>
+          <a class="contact-link" href="https://github.com/vijaynr" target="_blank" rel="noopener" aria-label="GitHub: vijaynr (opens in a new tab)"><span class="contact-copy"><span class="contact-label">GitHub</span><span class="contact-value">vijaynr</span></span><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M6 6h12v12"/></svg></span></a>
+        </address>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
     <div class="shell">
-      <div class="footer-callout reveal">
-        <h2>There’s more in the <em>fine print.</em></h2>
-        <a class="resume-link" href="docs/resume.pdf" target="_blank" rel="noopener">
-          <span class="resume-copy"><span>Open résumé</span><span class="resume-detail">PDF · Opens in a new tab</span></span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg>
-        </a>
-      </div>
       <div class="footer-bottom">
-        <div class="footer-meta">© 2024 Vijayasankar Ravindran</div>
-        <a class="footer-meta back-top" href="#top">Back to top ↑</a>
+        <div class="footer-meta">© 2026 Vijayasankar Ravindran</div>
+        <a class="footer-meta back-top" href="#top">Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></a>
       </div>
     </div>
   </footer>
