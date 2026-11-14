@@ -1,0 +1,333 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-14T17:01:38.460093+00:00",
+  "title": "Design System: Vijayasankar Ravindran Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "dark-bg": {
+        "role": "neutral",
+        "displayName": "Dark Bg",
+        "tonalRamp": [
+          "oklch(15% 0.00367 164.66)",
+          "oklch(26% 0.00367 164.66)",
+          "oklch(38% 0.00367 164.66)",
+          "oklch(49% 0.00367 164.66)",
+          "oklch(61% 0.00367 164.66)",
+          "oklch(72% 0.00367 164.66)",
+          "oklch(84% 0.00367 164.66)",
+          "oklch(95% 0.00367 164.66)"
+        ]
+      },
+      "dark-surface": {
+        "role": "neutral",
+        "displayName": "Dark Surface",
+        "tonalRamp": [
+          "oklch(15% 0.00583 156.76)",
+          "oklch(26% 0.00583 156.76)",
+          "oklch(38% 0.00583 156.76)",
+          "oklch(49% 0.00583 156.76)",
+          "oklch(61% 0.00583 156.76)",
+          "oklch(72% 0.00583 156.76)",
+          "oklch(84% 0.00583 156.76)",
+          "oklch(95% 0.00583 156.76)"
+        ]
+      },
+      "dark-surface-raised": {
+        "role": "neutral",
+        "displayName": "Dark Surface Raised",
+        "tonalRamp": [
+          "oklch(15% 0.00787 153.39)",
+          "oklch(26% 0.00787 153.39)",
+          "oklch(38% 0.00787 153.39)",
+          "oklch(49% 0.00787 153.39)",
+          "oklch(61% 0.00787 153.39)",
+          "oklch(72% 0.00787 153.39)",
+          "oklch(84% 0.00787 153.39)",
+          "oklch(95% 0.00787 153.39)"
+        ]
+      },
+      "dark-ink": {
+        "role": "neutral",
+        "displayName": "Dark Ink",
+        "tonalRamp": [
+          "oklch(15% 0.00542 117.93)",
+          "oklch(26% 0.00542 117.93)",
+          "oklch(38% 0.00542 117.93)",
+          "oklch(49% 0.00542 117.93)",
+          "oklch(61% 0.00542 117.93)",
+          "oklch(72% 0.00542 117.93)",
+          "oklch(84% 0.00542 117.93)",
+          "oklch(95% 0.00542 117.93)"
+        ]
+      },
+      "dark-muted": {
+        "role": "neutral",
+        "displayName": "Dark Muted",
+        "tonalRamp": [
+          "oklch(15% 0.01186 141.25)",
+          "oklch(26% 0.01186 141.25)",
+          "oklch(38% 0.01186 141.25)",
+          "oklch(49% 0.01186 141.25)",
+          "oklch(61% 0.01186 141.25)",
+          "oklch(72% 0.01186 141.25)",
+          "oklch(84% 0.01186 141.25)",
+          "oklch(95% 0.01186 141.25)"
+        ]
+      },
+      "dark-line": {
+        "role": "neutral",
+        "displayName": "Dark Line",
+        "tonalRamp": [
+          "oklch(15% 0.01162 150.38)",
+          "oklch(26% 0.01162 150.38)",
+          "oklch(38% 0.01162 150.38)",
+          "oklch(49% 0.01162 150.38)",
+          "oklch(61% 0.01162 150.38)",
+          "oklch(72% 0.01162 150.38)",
+          "oklch(84% 0.01162 150.38)",
+          "oklch(95% 0.01162 150.38)"
+        ]
+      },
+      "dark-accent": {
+        "role": "primary",
+        "displayName": "Dark Accent",
+        "tonalRamp": [
+          "oklch(15% 0.05893 255.69)",
+          "oklch(26% 0.05893 255.69)",
+          "oklch(38% 0.05893 255.69)",
+          "oklch(49% 0.05893 255.69)",
+          "oklch(61% 0.05893 255.69)",
+          "oklch(72% 0.05893 255.69)",
+          "oklch(84% 0.05893 255.69)",
+          "oklch(95% 0.05893 255.69)"
+        ]
+      },
+      "light-bg": {
+        "role": "neutral",
+        "displayName": "Light Bg",
+        "tonalRamp": [
+          "oklch(15% 0.00264 106.45)",
+          "oklch(26% 0.00264 106.45)",
+          "oklch(38% 0.00264 106.45)",
+          "oklch(49% 0.00264 106.45)",
+          "oklch(61% 0.00264 106.45)",
+          "oklch(72% 0.00264 106.45)",
+          "oklch(84% 0.00264 106.45)",
+          "oklch(95% 0.00264 106.45)"
+        ]
+      },
+      "light-surface": {
+        "role": "neutral",
+        "displayName": "Light Surface",
+        "tonalRamp": [
+          "oklch(15% 0.00450 134.85)",
+          "oklch(26% 0.00450 134.85)",
+          "oklch(38% 0.00450 134.85)",
+          "oklch(49% 0.00450 134.85)",
+          "oklch(61% 0.00450 134.85)",
+          "oklch(72% 0.00450 134.85)",
+          "oklch(84% 0.00450 134.85)",
+          "oklch(95% 0.00450 134.85)"
+        ]
+      },
+      "light-surface-raised": {
+        "role": "neutral",
+        "displayName": "Light Surface Raised",
+        "tonalRamp": [
+          "oklch(15% 0.00790 139.44)",
+          "oklch(26% 0.00790 139.44)",
+          "oklch(38% 0.00790 139.44)",
+          "oklch(49% 0.00790 139.44)",
+          "oklch(61% 0.00790 139.44)",
+          "oklch(72% 0.00790 139.44)",
+          "oklch(84% 0.00790 139.44)",
+          "oklch(95% 0.00790 139.44)"
+        ]
+      },
+      "light-ink": {
+        "role": "neutral",
+        "displayName": "Light Ink",
+        "tonalRamp": [
+          "oklch(15% 0.01335 154.39)",
+          "oklch(26% 0.01335 154.39)",
+          "oklch(38% 0.01335 154.39)",
+          "oklch(49% 0.01335 154.39)",
+          "oklch(61% 0.01335 154.39)",
+          "oklch(72% 0.01335 154.39)",
+          "oklch(84% 0.01335 154.39)",
+          "oklch(95% 0.01335 154.39)"
+        ]
+      },
+      "light-muted": {
+        "role": "neutral",
+        "displayName": "Light Muted",
+        "tonalRamp": [
+          "oklch(15% 0.01850 154.07)",
+          "oklch(26% 0.01850 154.07)",
+          "oklch(38% 0.01850 154.07)",
+          "oklch(49% 0.01850 154.07)",
+          "oklch(61% 0.01850 154.07)",
+          "oklch(72% 0.01850 154.07)",
+          "oklch(84% 0.01850 154.07)",
+          "oklch(95% 0.01850 154.07)"
+        ]
+      },
+      "light-line": {
+        "role": "neutral",
+        "displayName": "Light Line",
+        "tonalRamp": [
+          "oklch(15% 0.01209 145.47)",
+          "oklch(26% 0.01209 145.47)",
+          "oklch(38% 0.01209 145.47)",
+          "oklch(49% 0.01209 145.47)",
+          "oklch(61% 0.01209 145.47)",
+          "oklch(72% 0.01209 145.47)",
+          "oklch(84% 0.01209 145.47)",
+          "oklch(95% 0.01209 145.47)"
+        ]
+      },
+      "light-accent": {
+        "role": "primary",
+        "displayName": "Light Accent",
+        "tonalRamp": [
+          "oklch(15% 0.09629 255.18)",
+          "oklch(26% 0.09629 255.18)",
+          "oklch(38% 0.09629 255.18)",
+          "oklch(49% 0.09629 255.18)",
+          "oklch(61% 0.09629 255.18)",
+          "oklch(72% 0.09629 255.18)",
+          "oklch(84% 0.09629 255.18)",
+          "oklch(95% 0.09629 255.18)"
+        ]
+      },
+      "light-accent-ink": {
+        "role": "primary",
+        "displayName": "Light Accent Ink",
+        "tonalRamp": [
+          "oklch(15% 0.00000 89.88)",
+          "oklch(26% 0.00000 89.88)",
+          "oklch(38% 0.00000 89.88)",
+          "oklch(49% 0.00000 89.88)",
+          "oklch(61% 0.00000 89.88)",
+          "oklch(72% 0.00000 89.88)",
+          "oklch(84% 0.00000 89.88)",
+          "oklch(95% 0.00000 89.88)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Name",
+        "purpose": "Person\u2019s name in the hero."
+      },
+      "headline": {
+        "displayName": "Section heading",
+        "purpose": "Factual section names."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "interaction",
+        "value": ".2s ease",
+        "purpose": "Color, border, and small r\u00e9sum\u00e9-arrow feedback."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile-content",
+        "value": "580px"
+      },
+      {
+        "name": "mobile-navigation",
+        "value": "700px"
+      },
+      {
+        "name": "compact-layout",
+        "value": "800px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Factual hero action.",
+      "html": "<a class=\"ds-button-primary\" href=\"#work\">View projects</a>",
+      "css": ".ds-button-primary {display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:.7rem 1rem;border:1px solid var(--ink);border-radius:6px;font:500 .95rem \"DM Sans\",sans-serif;text-decoration:none;background:var(--ink);color:var(--bg);}.ds-button-primary:hover {background:var(--muted);border-color:var(--muted);}.ds-button-primary:focus-visible {outline:2px solid var(--accent);outline-offset:4px;}"
+    },
+    {
+      "name": "Secondary action",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Factual hero action.",
+      "html": "<a class=\"ds-button-secondary\" href=\"#work\">Open r\u00e9sum\u00e9</a>",
+      "css": ".ds-button-secondary {display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:.7rem 1rem;border:1px solid var(--line);border-radius:6px;font:500 .95rem \"DM Sans\",sans-serif;text-decoration:none;color:var(--ink);}.ds-button-secondary:hover {border-color:var(--ink);}.ds-button-secondary:focus-visible {outline:2px solid var(--accent);outline-offset:4px;}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Theme-aware links with visible active state.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Primary\"><a href=\"#experience\" aria-current=\"page\">Experience</a><a href=\"#work\">Work</a></nav>",
+      "css": ".ds-nav{display:flex;gap:.35rem}.ds-nav a{display:inline-flex;align-items:center;min-height:44px;padding:.7rem 1rem;border-radius:8px;color:var(--muted);font:500 .95rem/1.4 \"DM Sans\",sans-serif;text-decoration:none;transition:background-color .2s ease,color .2s ease}.ds-nav a:hover{background:var(--surface);color:var(--ink)}.ds-nav a[aria-current=\"page\"]{background:var(--ink);color:var(--bg)}.ds-nav a:focus-visible{outline:2px solid var(--accent);outline-offset:4px;}"
+    },
+    {
+      "name": "Skill label",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Static skill label; no interactive state.",
+      "html": "<span class=\"ds-chip\">Java</span>",
+      "css": ".ds-chip{display:inline-block;max-width:100%;padding:.4rem .7rem;border:1px solid var(--line);border-radius:5px;color:var(--ink);font:.9rem/1.5 \"DM Sans\",sans-serif}"
+    },
+    {
+      "name": "Education card",
+      "kind": "card",
+      "refersTo": "education-card",
+      "description": "Factual education and recognition.",
+      "html": "<article class=\"ds-education\"><p>2013 \u2014 2017 \u00b7 Coimbatore</p><h3>B.E. Electronics and Communication</h3><p>PSG College of Technology</p></article>",
+      "css": ".ds-education{padding:1.5rem;border:1px solid var(--line);border-radius:8px;font-family:\"DM Sans\",sans-serif;color:var(--ink)}.ds-education h3{margin:.8rem 0 .5rem;font-size:1.15rem;font-weight:600;line-height:1.5}.ds-education p{margin:0;color:var(--muted);font-size:.9rem;line-height:1.7}"
+    },
+    {
+      "name": "Project entry",
+      "kind": "card",
+      "refersTo": "project-entry",
+      "description": "Open project row; only actual links are interactive.",
+      "html": "<a class=\"ds-project\" href=\"#work\"><span>Open source \u00b7 TypeScript</span><h3>PeerView</h3><p>A command-line tool for pull request workflows.</p></a>",
+      "css": ".ds-project{display:flex;flex-direction:column;padding:1.75rem 0;border-top:1px solid var(--line);font-family:\"DM Sans\",sans-serif;color:var(--ink);text-decoration:none}.ds-project span{color:var(--muted);font-size:.8rem}.ds-project h3{margin:1rem 0 .65rem;font-size:1.25rem;line-height:1.4;font-weight:600}.ds-project p{margin:0;max-width:65ch;color:var(--muted);font-size:.95rem;line-height:1.75}.ds-project:hover h3{text-decoration:underline;text-underline-offset:.2em}.ds-project:focus-visible{outline:2px solid var(--accent);outline-offset:4px;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Subtle professional portfolio",
+    "overview": "Present the person's name, role, experience, projects, skills, and contact information with calm typography and factual language. This documents the implemented plain HTML/CSS portfolio and the user's explicit direction: \"remove all fancy taglines\" and \"build a subtle portfolio website.\"",
+    "keyCharacteristics": [
+      "Factual copy and clear hierarchy.",
+      "Neutral light and dark themes with restrained blue accents.",
+      "Flat sections, thin dividers, and modest rounded controls.",
+      "A large transparent portrait with a softly animated blue, lilac, and teal gradient; this is the only playful area."
+    ],
+    "rules": [
+      {
+        "name": "The Factual Copy Rule",
+        "body": "Use factual names, roles, section headings, descriptions, and action labels only. Do not add taglines, slogans, metaphors, motivational claims, or clever promotional headings. The hero heading is the person's name.",
+        "section": "overview"
+      },
+      {
+        "name": "The Theme Pairing Rule",
+        "body": "Resolve colors through the existing theme variables. Keep text, controls, borders, and interaction states legible in both themes.",
+        "section": "colors"
+      }
+    ],
+    "dos": [
+      "Do use the person's name, actual role, factual section headings, and explicit action labels.",
+      "Do preserve neutral light and dark theme pairings and visible keyboard focus.",
+      "Do keep the centered shell, responsive stacking, readable line lengths, and simple portrait treatment."
+    ],
+    "donts": [
+      "Don't add fancy taglines, slogans, metaphors, promotional headings, or invented claims.",
+      "Don't reintroduce marquees, stickers, oversized monograms, grain, rotated panels, or decorative gradients.",
+      "Don't replace factual project and experience content with marketing copy."
+    ]
+  }
+}

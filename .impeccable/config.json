@@ -20,6 +20,33 @@
         ],
         "createdAt": "2026-11-14T10:14:18.721Z",
         "reason": "Agent: html/body horizontal clipping contains decorative card numbers and fixed grain; this static homepage has no escaping menus, popovers or tooltips."
+      },
+      {
+        "rule": "design-system-font",
+        "value": "mono",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-14T17:02:40.989Z",
+        "reason": "Agent: detector splits the documented DM Mono font family into mono; DM Mono is intentionally used only for the VNR brand and is declared in DESIGN.md."
+      },
+      {
+        "rule": "design-system-font",
+        "value": "sans",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-14T17:02:41.018Z",
+        "reason": "Agent: detector splits the documented DM Sans font family into sans; DM Sans is the declared body and UI typeface in DESIGN.md."
+      },
+      {
+        "rule": "radial-halo",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-14T17:12:10.502Z",
+        "reason": "User explicitly requested an animated gradient behind the larger transparent hero portrait on 2026-11-14. This intentional effect is confined to the portrait; the remainder of the portfolio stays subtle and tagline-free. Includes pause, offscreen suspension, and reduced-motion behavior."
       }
     ]
   }
