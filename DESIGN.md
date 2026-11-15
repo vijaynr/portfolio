@@ -90,7 +90,7 @@ Present the person's name, role, experience, projects, skills, and contact infor
 - Factual copy and clear hierarchy.
 - Neutral light and dark themes with restrained blue accents.
 - Flat sections, thin dividers, and modest rounded controls.
-- A large transparent portrait with a softly animated blue, lilac, and teal gradient; this is the only playful area.
+- A large transparent portrait with a vivid animated coral, pink, violet, and teal gradient; this is the only playful area.
 
 ## Colors
 
@@ -100,7 +100,7 @@ The dark and light accent tokens provide restrained blue selection and keyboard-
 
 ### Neutral
 
-Each theme has background, surface, raised surface, ink, muted text, and line tokens. Match the current CSS custom properties in `index.html`; the frontmatter records both theme palettes. Dark accent ink shares the dark background token; light accent ink has its own token. Preserve portrait transparency. Only the hero image may use a playful, slowly animated gradient in blue (#86b9d5), lilac (#b9a3d8), and teal (#8cc9b5). Fade its lower edge into the page.
+Each theme has background, surface, raised surface, ink, muted text, and line tokens. Match the current CSS custom properties in `index.html`; the frontmatter records both theme palettes. Dark accent ink shares the dark background token; light accent ink has its own token. Preserve portrait transparency. Only the hero image may use a playful animated gradient in coral (#fb9567), pink (#e65baf), violet (#7775e8), and teal (#39bdc5). Use a clean lower crop aligned with the next section divider; do not fade the portrait itself.
 
 **The Theme Pairing Rule.** Resolve colors through the existing theme variables. Keep text, controls, borders, and interaction states legible in both themes.
 
@@ -118,11 +118,11 @@ At 800px and below, the hero narrows its portrait column to 230px with a 365px i
 
 ## Elevation & Depth
 
-The interface is flat: no shadows, grain, decorative gradients, or rotating layers. Thin dividers and modest surface differences separate content. Motion is limited to brief interaction feedback and smooth anchor scrolling; reduced-motion preference disables smooth scrolling.
+The interface is flat: no shadows, grain, or decorative motion outside the hero portrait. Thin dividers and modest surface differences separate content. The portrait gradient is the sole exception; reduced motion disables its animation and smooth scrolling.
 
 ## Shapes
 
-Use the frontmatter's modest corner radii for chips, actions, and controls. Project entries are open rows with top dividers rather than elevated tiles. Contact arrows use small circular outlines. Place the approved transparent portrait over a soft gradient that blends into the page. No rings, dots, frames, badges, or taglines. Keep the rest of the site restrained and factual. Retain the pants-excluding crop and soft lower-edge fade. The desktop image area is up to 430px by 510px; mobile is up to 350px by 440px, centered beneath the copy. The gradient runs on a 16-second alternating cycle. A pause/resume control stays available; stop the loop when offscreen or the document is hidden, and show a static gradient without the control for reduced motion.
+Use the frontmatter's modest corner radii for chips, actions, and controls. Project entries are open rows with top dividers rather than elevated tiles. Contact arrows use small circular outlines. Place the approved transparent portrait over a soft gradient that blends into the page. No rings, dots, frames, badges, or taglines. Keep the rest of the site restrained and factual. Retain the pants-excluding crop, enlarge the portrait by 12%, and align its clean lower edge with the next section divider. Keep the head fully visible. The desktop image area is up to 430px by 510px; mobile is up to 350px by 440px, centered beneath the copy. The gradient uses a 9-second alternating cycle with independently shifting color layers, gentle rotation, and scaling. Do not display a play/pause button, per the user’s explicit preference. Stop the loop when offscreen or the document is hidden, and show a static gradient for reduced motion.
 
 ## Components
 
@@ -151,5 +151,5 @@ Project entries use typography and dividers, with an underline and inverted arro
 
 ### Don't:
 - Don't add fancy taglines, slogans, metaphors, promotional headings, or invented claims.
-- Don't reintroduce marquees, stickers, oversized monograms, grain, rotated panels, or decorative gradients.
+- Don't reintroduce marquees, stickers, oversized monograms, grain, rotated panels, or decorative gradients outside the approved portrait background.
 - Don't replace factual project and experience content with marketing copy.

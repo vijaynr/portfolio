@@ -6,7 +6,7 @@
   <meta name="description" content="Portfolio of Vijayasankar Ravindran, Lead Software Engineer building enterprise applications with Java, Spring, Angular and AI-assisted development workflows.">
   <meta name="theme-color" content="#151716">
   <title>Vijayasankar Ravindran — Lead Software Engineer</title>
-  <link rel="icon" href="favicon.ico">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@700&amp;family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -45,7 +45,7 @@
     .shell { width: min(calc(100% - var(--gutter) * 2), var(--max)); margin-inline: auto; }
     h1 { margin: 0; max-width: 650px; font-size: clamp(2.35rem, 4.2vw, 3.6rem); font-weight: 600; line-height: 1.12; letter-spacing: -.035em; text-wrap: balance; }
     h2 { margin: 0; font-size: clamp(1.6rem, 2.5vw, 2rem); font-weight: 600; line-height: 1.3; letter-spacing: -.02em; }
-    .hero { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(250px, .8fr); align-items: center; gap: clamp(3rem, 7vw, 6rem); padding-block: clamp(3rem, 7vw, 6rem); }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(250px, .8fr); align-items: center; gap: clamp(3rem, 7vw, 6rem); padding-block: clamp(3rem, 7vw, 6rem) 0; }
     .hero-role { margin: 1.25rem 0 0; font-size: 1.1rem; }
     .hero-copy { max-width: 62ch; margin: 1rem 0 0; color: var(--muted); font-size: 1rem; line-height: 1.8; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.75rem; }
@@ -55,17 +55,16 @@
     .hero-action-primary:hover { background: var(--muted); border-color: var(--muted); }
     .hero-action svg { width: 17px; height: 17px; }
     .hero-art { position: relative; isolation: isolate; width: min(calc(100% + 60px), 430px); height: 510px; margin: 0; justify-self: end; }
-    .hero-art::before { content: ""; position: absolute; z-index: -1; inset: 8% -4% 2%; background: radial-gradient(ellipse at 25% 35%, #86b9d5 0%, transparent 55%), radial-gradient(ellipse at 75% 40%, #b9a3d8 0%, transparent 55%), radial-gradient(ellipse at 45% 80%, #8cc9b5 0%, transparent 60%); background-size: 170% 160%; background-position: 15% 25%; mask-image: radial-gradient(ellipse, #000 32%, transparent 72%); filter: blur(16px); opacity: .85; animation: portrait-gradient 16s ease-in-out infinite alternate; animation-play-state: paused; }
+    .hero-art::before { content: ""; position: absolute; z-index: -1; inset: 6% -7% 0; background: radial-gradient(ellipse at 25% 25%, #fb9567 0%, transparent 55%), radial-gradient(ellipse at 75% 30%, #e65baf 0%, transparent 55%), radial-gradient(ellipse at 70% 75%, #7775e8 0%, transparent 55%), radial-gradient(ellipse at 20% 75%, #39bdc5 0%, transparent 55%); background-size: 145% 145%; background-position: 0% 0%, 100% 0%, 100% 100%, 0% 100%; mask-image: radial-gradient(ellipse, #000 28%, transparent 70%); filter: blur(20px); opacity: .9; transform-origin: 50% 55%; animation: portrait-gradient 9s ease-in-out infinite alternate; animation-play-state: paused; pointer-events: none; }
     .hero-art[data-animate="true"]::before { animation-play-state: running; }
-    html[data-theme="dark"] .hero-art::before { opacity: .65; }
-    @keyframes portrait-gradient { from { background-position: 15% 25%; } to { background-position: 85% 75%; } }
-    .portrait-motion { position: absolute; z-index: 2; right: 0; bottom: .5rem; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--line); border-radius: 50%; background: var(--bg); color: var(--muted); cursor: pointer; }
-    .portrait-motion:hover { color: var(--ink); border-color: var(--ink); }
-    .portrait-motion svg { width: 16px; height: 16px; }
-    .portrait-motion .play-icon, .portrait-motion[aria-pressed="true"] .pause-icon { display: none; }
-    .portrait-motion[aria-pressed="true"] .play-icon { display: block; }
-    .portrait-crop { position: absolute; inset: 0; overflow: hidden; mask-image: linear-gradient(to bottom, #000 88%, transparent 100%); }
-    .hero-portrait { position: absolute; bottom: 0; right: -25%; width: 150%; height: 100%; object-fit: contain; object-position: center bottom; transform: translateY(6%); }
+    html[data-theme="dark"] .hero-art::before { opacity: .85; }
+    @keyframes portrait-gradient {
+      0% { background-position: 0% 0%, 100% 0%, 100% 100%, 0% 100%; transform: rotate(-8deg) scale(.96); }
+      50% { background-position: 65% 35%, 35% 80%, 65% 10%, 90% 40%; transform: rotate(3deg) scale(1.05); }
+      100% { background-position: 100% 65%, 0% 100%, 0% 0%, 100% 0%; transform: rotate(10deg) scale(1); }
+    }
+    .portrait-crop { position: absolute; inset: 0; overflow: hidden; }
+    .hero-portrait { position: absolute; bottom: 0; right: -25%; width: 150%; height: 100%; object-fit: contain; object-position: center bottom; transform-origin: center bottom; transform: translateY(13%) scale(1.12); }
     .section { padding: clamp(3rem, 6vw, 5rem) 0; border-top: 1px solid var(--line); }
     .section-heading { margin-bottom: 2.25rem; }
     .section-description { max-width: 65ch; margin: .75rem 0 0; color: var(--muted); font-size: 1rem; }
@@ -177,7 +176,7 @@
       .toolbox, .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
     }
     @media (max-width: 580px) {
-      .hero { grid-template-columns: 1fr; padding-block: 2.5rem 3rem; gap: 2rem; }
+      .hero { grid-template-columns: 1fr; padding-block: 2.5rem 0; gap: 2rem; }
       .hero-art { width: min(100%, 350px); height: 440px; justify-self: center; }
       .hero-role { font-size: 1rem; }
       .experience-item { grid-template-columns: 1fr; gap: .8rem; }
@@ -188,7 +187,6 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .hero-art::before { animation: none; }
-      .portrait-motion { display: none; }
     }
   </style>
 </head>
@@ -230,10 +228,6 @@
         </div>
         <figure class="hero-art">
           <div class="portrait-crop"><img class="hero-portrait" src="assets/images/vijayasankar-portrait.webp" alt="Vijayasankar Ravindran wearing a dark navy shirt" width="1312" height="1199" fetchpriority="high"></div>
-          <button class="portrait-motion" type="button" aria-label="Pause background animation" title="Pause background animation" aria-pressed="false">
-            <svg class="pause-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M7 5v10m6-10v10"/></svg>
-            <svg class="play-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="m7 4 9 6-9 6Z"/></svg>
-          </button>
         </figure>
       </div>
     </section>
@@ -478,12 +472,10 @@
     updatePageState();
 
     const portrait = document.querySelector('.hero-art');
-    const motionButton = document.querySelector('.portrait-motion');
     const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
     let portraitVisible = false;
-    let portraitPaused = false;
     function updatePortraitMotion() {
-      portrait.dataset.animate = String(portraitVisible && !document.hidden && !portraitPaused && !reducedMotion.matches);
+      portrait.dataset.animate = String(portraitVisible && !document.hidden && !reducedMotion.matches);
     }
     new IntersectionObserver(entries => {
       portraitVisible = entries[0].isIntersecting;
@@ -491,14 +483,6 @@
     }).observe(portrait);
     document.addEventListener('visibilitychange', updatePortraitMotion);
     reducedMotion.addEventListener('change', updatePortraitMotion);
-    motionButton.addEventListener('click', () => {
-      portraitPaused = !portraitPaused;
-      motionButton.setAttribute('aria-pressed', String(portraitPaused));
-      const label = `${portraitPaused ? 'Resume' : 'Pause'} background animation`;
-      motionButton.setAttribute('aria-label', label);
-      motionButton.title = label;
-      updatePortraitMotion();
-    });
   </script>
 </body>
 </html>
